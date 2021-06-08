@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/23/KaMsdQ4SVP7mIZY.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/23/2FUCInokPS9T6Mv.png">
 <meta property="article:published_time" content="2021-05-23T06:42:22.000Z">
-<meta property="article:modified_time" content="2021-05-23T09:13:14.094Z">
+<meta property="article:modified_time" content="2021-06-08T16:16:11.714Z">
 <meta property="article:author" content="zhaoxw">
 <meta property="article:tag" content="前后端">
 <meta name="twitter:card" content="summary">
@@ -350,6 +350,38 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//在web.xml中编写配置文件</span><br><span class="line">&lt;listener&gt;</span><br><span class="line">&lt;listener-class&gt;com.hebau.servlet.MyListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://i.loli.net/2021/05/23/2FUCInokPS9T6Mv.png"></p>
+<h3 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h3><p>Servlet是三组件中最重要的一部分，但对于Servlet这里只谈谈个人理解，不谈应用</p>
+<ul>
+<li><p>Servlet不能独立运行，它必须被部署到Servelt容器中，由容器来实例化和调用Servlet方法，Servlet容器在Servlet生命周期内包容和管理Servelt。</p>
+</li>
+<li><p>用户单击某个链接或者直接在浏览器的地址栏中输入URL来访问Servlet，Web服务器接收到该请求后，并不是将请求直接交给Servlet，而是交给Servlet容器。Servlet容器实例化Servlet，调用Servlet的一个特定方法对请求进行处理，并产生一个响应。这个响应由Servlet容器返回给Web服务器，Web服务器包装这个响应，以HTTP响应的形式发送给Web浏览器。</p>
+</li>
+<li><p>Tomcat具有处理静态页面的能力，此外还是servlet和jsp的容器</p>
+</li>
+<li><p>在servlet中，可以通过servletconfig对象获取描述servlet容器运行环境的servletcontext对象，使用该对象，servlet可以和它的servlet容器进行通信</p>
+</li>
+<li><p>servlet对象使用servletconfig对象在servlet初始化期间向它传递配置信息，一个servlet只有一个servletconfig对象</p>
+</li>
+<li><p>genericservlet有两个init（）方法，HTTPservlet有两个servlet（req，reps）方法，其中一个是将req，repe类型转化为HTTPreq，HTTPreps</p>
+</li>
+</ul>
+<h6 id="服务器向客户端输出数据两种方式：字节流，字符流"><a href="#服务器向客户端输出数据两种方式：字节流，字符流" class="headerlink" title="服务器向客户端输出数据两种方式：字节流，字符流"></a>服务器向客户端输出数据两种方式：字节流，字符流</h6><ul>
+<li>字节流：输出中文时没有乱码，因为字节流在输出中文时，默认采用本地编码输出（GBK），而浏览器默认也采用GBK编码显示，二者编码一致，所以不会出现乱码。</li>
+</ul>
+<p>​      OutputStream os=response.getOutputStream（）；</p>
+<p>​      os.write（“Hello，World”.getBytes（））；</p>
+<ul>
+<li>字符流：浏览器默认输出数据采用ISO-8859-1，不支持中文</li>
+</ul>
+<p>​        printWrite out=response.getWriter（）；</p>
+<p>​        out.write（“Hello World”）;</p>
+<p>改变服务器输出数据默认编码：response.setCharacterencoding(“GBK”)      </p>
+<p>可不写因为服务器输出数据时只需设置response.setContentType(“text/html;charset=编码”)   </p>
+<p>就不会出现乱码问题，因为这条语句有以下2个功能：</p>
+<p>1.告知浏览器用什么编码方式显示内容</p>
+<p>2.告知服务器用什么编码方式输出数据给浏览器</p>
+<p>还可通过设置头信息解决乱码问题</p>
+<p>response.setHeader(“ContextType”,”text/html;charset=编码”)</p>
 
       
     </div>
@@ -473,7 +505,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -529,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Filter-%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">Filter(过滤器)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Listener%EF%BC%88%E7%9B%91%E5%90%AC%E5%99%A8%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">Listener（监听器）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E5%9F%9F%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E5%92%8C%E9%94%80%E6%AF%81%E7%9A%84%E7%9B%91%E5%90%AC%E5%99%A8"><span class="nav-number">2.0.1.</span> <span class="nav-text">三大域对象创建和销毁的监听器</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Filter-%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">Filter(过滤器)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Listener%EF%BC%88%E7%9B%91%E5%90%AC%E5%99%A8%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">Listener（监听器）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E5%9F%9F%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E5%92%8C%E9%94%80%E6%AF%81%E7%9A%84%E7%9B%91%E5%90%AC%E5%99%A8"><span class="nav-number">2.0.1.</span> <span class="nav-text">三大域对象创建和销毁的监听器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet"><span class="nav-number">3.</span> <span class="nav-text">Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%91%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BE%93%E5%87%BA%E6%95%B0%E6%8D%AE%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E5%AD%97%E8%8A%82%E6%B5%81%EF%BC%8C%E5%AD%97%E7%AC%A6%E6%B5%81"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">服务器向客户端输出数据两种方式：字节流，字符流</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
