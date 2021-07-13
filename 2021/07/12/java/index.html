@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java基础1.解释下什么是面向对象？面向对象和面向过程的区别？面向对象是一种基于面向过程的编程思想，是向现实世界模型的自然延伸，是一种”万物皆对象”的编程思想。由执行者变为指挥者，在现实生活中的任何物体都可以归为一类事物，而每一个个人都是一类事物的实例。面向对象的编程是以对象为中心，以信息为驱动。 区别： （1）编程思路不同：面向过程以实现功能的函数开发为主，而面向对象要首要抽象出类，属性及其方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java">
+<meta property="og:url" content="http://example.com/2021/07/12/java/index.html">
+<meta property="og:site_name" content="island443">
+<meta property="og:description" content="Java基础1.解释下什么是面向对象？面向对象和面向过程的区别？面向对象是一种基于面向过程的编程思想，是向现实世界模型的自然延伸，是一种”万物皆对象”的编程思想。由执行者变为指挥者，在现实生活中的任何物体都可以归为一类事物，而每一个个人都是一类事物的实例。面向对象的编程是以对象为中心，以信息为驱动。 区别： （1）编程思路不同：面向过程以实现功能的函数开发为主，而面向对象要首要抽象出类，属性及其方">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-07-12T11:45:25.000Z">
+<meta property="article:modified_time" content="2021-07-12T12:44:07.146Z">
+<meta property="article:author" content="zhaoxw">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/07/12/java/"/>
+
+
+
+
+
+  <title>java | island443</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">island443</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">永远不要停下前进的脚步!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/12/java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="island443">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-12T19:45:25+08:00">
+                2021-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h3><h5 id="1-解释下什么是面向对象？面向对象和面向过程的区别？"><a href="#1-解释下什么是面向对象？面向对象和面向过程的区别？" class="headerlink" title="1.解释下什么是面向对象？面向对象和面向过程的区别？"></a>1.解释下什么是面向对象？面向对象和面向过程的区别？</h5><p>面向对象是一种基于面向过程的编程思想，是向现实世界模型的自然延伸，是一种”万物皆对象”的编程思想。由执行者变为指挥者，在现实生活中的任何物体都可以归为一类事物，而每一个个人都是一类事物的实例。面向对象的编程是以对象为中心，以信息为驱动。</p>
+<p>区别：</p>
+<p>（1）编程思路不同：面向过程以实现功能的函数开发为主，而面向对象要首要抽象出类，属性及其方法，然后通过实例化类，执行方法来完成功能。</p>
+<p>（2）封装性：都具有封装性，但是面向过程是封装的是功能，而面向对象封装的是数据和功能。</p>
+<p>（3）面向对象具有继承性和多态性，而面向过程没有继承性和多态性。</p>
+<h5 id="2-面向对象的三大特性？"><a href="#2-面向对象的三大特性？" class="headerlink" title="2.面向对象的三大特性？"></a>2.面向对象的三大特性？</h5><p>（1）封装：通常认为封装是把数据和操作数据的方法封装起来，对数据的访问只能通过已定义的接口。</p>
+<p>（2）继承：继承是从已有类得到继承信息创建新类的过程。</p>
+<p>（3）多态：分为编译时多态（方法重载）和运行时多态（方法重写）。要实现多态需要做两件事：一是子类继承父类并重写父类的方法，二是父类型引用子类型的对象，这样同样的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为。</p>
+<p>补充：子类拥有父类对象所有的属性和方法（包括私有属性和私有方法），但是父类中的私有属性和方法子类是无法访问，只是拥有。因为在一个子类被创建的时候，首先会在内存中创建一个父类对象，然后在父类对象外部放上子类独有的属性，两者合起来形成一个子类的对象；</p>
+<h5 id="3-JDK，JRE，JVM三者之间的关系？"><a href="#3-JDK，JRE，JVM三者之间的关系？" class="headerlink" title="3.JDK，JRE，JVM三者之间的关系？"></a>3.JDK，JRE，JVM三者之间的关系？</h5><p>JDK（Java Development Kit）:是Java开发工具包，是整个Java的核心，包括了Java运行环境JRE，Java工具和Java基础类库。</p>
+<p>JRE（Java Runtime Environment）:是Java的运行环境，包含JVM标准实现及Java核心类库。</p>
+<p>JVM（Java Virtual Machine）:是Java虚拟机，是整个Java实现跨平台的最核心的部分，能够运行以Java语言写作的软件程序。所有的Java程序会首先被编译为.class的类文件，这种类文件可以在虚拟机上运行。</p>
+<h5 id="4-Java中是否可以重写一个private或者static方法？"><a href="#4-Java中是否可以重写一个private或者static方法？" class="headerlink" title="4.Java中是否可以重写一个private或者static方法？"></a>4.Java中是否可以重写一个private或者static方法？</h5><p>都不能</p>
+<p>静态方法补充：静态的方法可以被继承，但是不能重写。如果父类和子类中存在同样名称和参数的静态方法，那么该子类的方法会把原来继承过来的父类的方法隐藏，而不是重写。通俗的讲就是父类的方法和子类的方法是两个没有关系的方法，具体调用哪一个方法是看是哪个对象的引用；这种父子类方法也不在存在多态的性质。</p>
+<h5 id="5-构造方法有哪些特性？"><a href="#5-构造方法有哪些特性？" class="headerlink" title="5.构造方法有哪些特性？"></a>5.构造方法有哪些特性？</h5><p>（1）名字与类名相同</p>
+<p>（2）没有返回值，但不能用void声明构造函数</p>
+<p>（3）构建类的对象时自动执行，无需调用</p>
+<h5 id="6-在Java中定义一个不做事且没有参数的构造方法有什么用？"><a href="#6-在Java中定义一个不做事且没有参数的构造方法有什么用？" class="headerlink" title="6.在Java中定义一个不做事且没有参数的构造方法有什么用？"></a>6.在Java中定义一个不做事且没有参数的构造方法有什么用？</h5><p>Java程序在执行子类的构造方法之前，如果没有用super（）来调用父类特定的构造方法，则会调用“父类中没有参数的构造方法”。</p>
+<p>如果父类没有空参构造，子类又没有调用super（）方法，则会编译出错。</p>
+<h5 id="7-Java中创建对象的几种方式？"><a href="#7-Java中创建对象的几种方式？" class="headerlink" title="7.Java中创建对象的几种方式？"></a>7.Java中创建对象的几种方式？</h5><p>1.使用new关键字</p>
+<p>2.使用Class类的newlnstance方法，该方法调用无参的构造器创建对象（反射）：Class.forName.newInstance()</p>
+<p>3.使用clone()方法</p>
+<p>4.反序列化，比如调用ObjectInputStream类的readObject（）方法</p>
+<h5 id="8-抽象类和接口有什么区别？"><a href="#8-抽象类和接口有什么区别？" class="headerlink" title="8.抽象类和接口有什么区别？"></a>8.抽象类和接口有什么区别？</h5><p>（1）抽象类可以定义构造函数，接口不能定义构造函数</p>
+<p>（2）抽象类中可以有抽象方法和具体方法，而接口中只能有抽象方法（public abstract）</p>
+<p>（3）抽象类中的成员权限可以是public,默认,protected(抽象类中的抽象方法就是为了重写，所以不能被private修饰)，而接口的成员只可以是public（方法默认：public static 成员变量默认：public static final）</p>
+<p>(4)抽象类中可以包含静态方法，而接口中不可以包含静态方法</p>
+<p>JDK8中的改变：</p>
+<p>1.在JDK1.8中，允许接口中包含带有具体实现的方法，使用default修饰，这类方法就是默认方法</p>
+<p>2.在 JDK1.8 之前接口中不能包含静态方法，JDK1.8 以后可以包含</p>
+<h5 id="9-静态变量和实例变量的区别？"><a href="#9-静态变量和实例变量的区别？" class="headerlink" title="9.静态变量和实例变量的区别？"></a>9.静态变量和实例变量的区别？</h5><p>静态变量：是被static修饰的变量，也成为类变量，它属于类，因此不管创建多少个对象，静态变量在内存中有且仅有一个拷贝，静态变量可以实现让多个对象共享内存</p>
+<p>实例变量：属于某一实例，需要先创建对象，然后通过对象才能访问到它</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/11/Git/" rel="next" title="Git">
+                <i class="fa fa-chevron-left"></i> Git
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/07/12/java%E5%B9%B6%E5%8F%91/" rel="prev" title="java并发">
+                java并发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/touxiang.jpeg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/island443" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">Java基础</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E8%A7%A3%E9%87%8A%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9F%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.解释下什么是面向对象？面向对象和面向过程的区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="nav-number">1.0.2.</span> <span class="nav-text">2.面向对象的三大特性？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-JDK%EF%BC%8CJRE%EF%BC%8CJVM%E4%B8%89%E8%80%85%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.JDK，JRE，JVM三者之间的关系？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-Java%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E9%87%8D%E5%86%99%E4%B8%80%E4%B8%AAprivate%E6%88%96%E8%80%85static%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-number">1.0.4.</span> <span class="nav-text">4.Java中是否可以重写一个private或者static方法？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E6%80%A7%EF%BC%9F"><span class="nav-number">1.0.5.</span> <span class="nav-text">5.构造方法有哪些特性？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-%E5%9C%A8Java%E4%B8%AD%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%81%9A%E4%BA%8B%E4%B8%94%E6%B2%A1%E6%9C%89%E5%8F%82%E6%95%B0%E7%9A%84%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="nav-number">1.0.6.</span> <span class="nav-text">6.在Java中定义一个不做事且没有参数的构造方法有什么用？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-Java%E4%B8%AD%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">1.0.7.</span> <span class="nav-text">7.Java中创建对象的几种方式？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.0.8.</span> <span class="nav-text">8.抽象类和接口有什么区别？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E5%92%8C%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.0.9.</span> <span class="nav-text">9.静态变量和实例变量的区别？</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhaoxw</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
