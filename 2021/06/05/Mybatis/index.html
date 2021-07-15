@@ -1,332 +1,228 @@
+
+
 <!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
 
 
 
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zhaoxw">
+  <meta name="keywords" content="">
+  
+  <title>Mybatis - island443</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
+
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="前后端,SSM," />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="1.Mybatis介绍1.1什么是MyBatis？MyBatis是一款优秀的持久层框架，他支持自定义SQL、存储过程以及高级映射。MyBatis免除了几乎所有的JDBC代码以及设置参数和获取结果集的工作。MyBatis可以通过简单的XML或注解来配置和映射  原始类型、接口和java POJO（Plain Old Java Objects ,普通老式Java对象）在数据库中的记录。 1.2怎么获取">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Mybatis">
-<meta property="og:url" content="http://example.com/2021/06/05/Mybatis/index.html">
-<meta property="og:site_name" content="island443">
-<meta property="og:description" content="1.Mybatis介绍1.1什么是MyBatis？MyBatis是一款优秀的持久层框架，他支持自定义SQL、存储过程以及高级映射。MyBatis免除了几乎所有的JDBC代码以及设置参数和获取结果集的工作。MyBatis可以通过简单的XML或注解来配置和映射  原始类型、接口和java POJO（Plain Old Java Objects ,普通老式Java对象）在数据库中的记录。 1.2怎么获取">
-<meta property="og:locale">
-<meta property="og:image" content="https://i.loli.net/2021/06/07/2aAdPfutwch9Sk4.png">
-<meta property="og:image" content="https://i.loli.net/2021/06/07/auGSZD9qQwPmTYM.png">
-<meta property="og:image" content="https://i.loli.net/2021/06/07/EgZQ8RFYIxp3Wdq.png">
-<meta property="og:image" content="https://i.loli.net/2021/06/08/Xrz9iKW8FIodjCx.png">
-<meta property="article:published_time" content="2021-06-05T09:40:45.000Z">
-<meta property="article:modified_time" content="2021-06-08T15:47:13.493Z">
-<meta property="article:author" content="zhaoxw">
-<meta property="article:tag" content="前后端">
-<meta property="article:tag" content="SSM">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2021/06/07/2aAdPfutwch9Sk4.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://example.com/2021/06/05/Mybatis/"/>
-
-
-
-
-
-  <title>Mybatis | island443</title>
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
   
 
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  
-  
-    
-  
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">island443</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">永远不要停下前进的脚步!</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
 </nav>
 
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/05/Mybatis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/touxiang.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="island443">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Mybatis</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Mybatis">
               
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-05T17:40:45+08:00">
-                2021-06-05
-              </time>
-            
+            </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-05 17:40" pubdate>
+        2021年6月5日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      89
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
-          </span>
+          </div>
 
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      </div>
+    </div>
+  </header>
 
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
-      
-        <h3 id="1-Mybatis介绍"><a href="#1-Mybatis介绍" class="headerlink" title="1.Mybatis介绍"></a>1.Mybatis介绍</h3><h4 id="1-1什么是MyBatis？"><a href="#1-1什么是MyBatis？" class="headerlink" title="1.1什么是MyBatis？"></a>1.1什么是MyBatis？</h4><p>MyBatis是一款优秀的持久层框架，他支持自定义SQL、存储过程以及高级映射。MyBatis免除了几乎所有的JDBC代码以及设置参数和获取结果集的工作。MyBatis可以通过简单的XML或注解来配置和映射  原始类型、接口和java POJO（Plain Old Java Objects ,普通老式Java对象）在数据库中的记录。</p>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Mybatis</h1>
+            
+            <div class="markdown-body">
+              <h3 id="1-Mybatis介绍"><a href="#1-Mybatis介绍" class="headerlink" title="1.Mybatis介绍"></a>1.Mybatis介绍</h3><h4 id="1-1什么是MyBatis？"><a href="#1-1什么是MyBatis？" class="headerlink" title="1.1什么是MyBatis？"></a>1.1什么是MyBatis？</h4><p>MyBatis是一款优秀的持久层框架，他支持自定义SQL、存储过程以及高级映射。MyBatis免除了几乎所有的JDBC代码以及设置参数和获取结果集的工作。MyBatis可以通过简单的XML或注解来配置和映射  原始类型、接口和java POJO（Plain Old Java Objects ,普通老式Java对象）在数据库中的记录。</p>
 <h4 id="1-2怎么获取MyBatis"><a href="#1-2怎么获取MyBatis" class="headerlink" title="1.2怎么获取MyBatis"></a>1.2怎么获取MyBatis</h4><p>因为搬到了Github，所有可以直接去Github上下载，最简单的还是用Maven获取</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https://mvnrepository.com/artifact/org.mybatis/mybatis --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.5.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 
@@ -434,7 +330,7 @@
 
 
 <h4 id="4-4设置（Settings）"><a href="#4-4设置（Settings）" class="headerlink" title="4.4设置（Settings）"></a>4.4设置（Settings）</h4><p>这是Mybatis中极为重要的调整设置，它们会改变Mybatis的运行时行为。</p>
-<p><img src="https://i.loli.net/2021/06/07/2aAdPfutwch9Sk4.png" alt="图片.png"></p>
+<p><img src="https://i.loli.net/2021/06/07/2aAdPfutwch9Sk4.png" srcset="/img/loading.gif" lazyload alt="图片.png"></p>
 <h4 id="4-5映射器（mappers）"><a href="#4-5映射器（mappers）" class="headerlink" title="4.5映射器（mappers）"></a>4.5映射器（mappers）</h4><p>方式一：resource:引入java包中的sql映射文件mapper.xml</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--每一个Mapper.xml都需要在Mybatis核心配置文件中注册！--&gt;</span><br><span class="line">  &lt;mappers&gt;</span><br><span class="line">      &lt;mapper resource=&quot;com/mybatis/dao/EmployeeMapper.xml&quot;/&gt;</span><br><span class="line">  &lt;/mappers&gt;</span><br></pre></td></tr></table></figure>
 
@@ -458,7 +354,7 @@
 <li>接口和它的Mapper配置文件必须同名！</li>
 <li>接口和它的Mapper配置文件必须在同一个包下!</li>
 </ul>
-<h4 id="4-6生命周期和作用域"><a href="#4-6生命周期和作用域" class="headerlink" title="4.6生命周期和作用域"></a>4.6生命周期和作用域</h4><p><img src="https://i.loli.net/2021/06/07/auGSZD9qQwPmTYM.png" alt="20201023104621506.png"></p>
+<h4 id="4-6生命周期和作用域"><a href="#4-6生命周期和作用域" class="headerlink" title="4.6生命周期和作用域"></a>4.6生命周期和作用域</h4><p><img src="https://i.loli.net/2021/06/07/auGSZD9qQwPmTYM.png" srcset="/img/loading.gif" lazyload alt="20201023104621506.png"></p>
 <p>生命周期和作用域是至关重要的，因为错误的使用会导致非常严重的并发问题。</p>
 <p><strong>SqlSessionFactoryBuilder：</strong></p>
 <ul>
@@ -478,7 +374,7 @@
 <li>SqlSession 的实例不是线程安全的，因此是不能被共享的，所以它的最佳的作用域是请求或方法作用域。</li>
 <li>用完后需要赶紧关闭，否则资源被占用！</li>
 </ul>
-<p><img src="https://i.loli.net/2021/06/07/EgZQ8RFYIxp3Wdq.png" alt="20201023104427946.png"></p>
+<p><img src="https://i.loli.net/2021/06/07/EgZQ8RFYIxp3Wdq.png" srcset="/img/loading.gif" lazyload alt="20201023104427946.png"></p>
 <p>这里每一个Mapper就代表一个具体的业务。</p>
 <h3 id="5-解决属性名和字段名不一致的问题"><a href="#5-解决属性名和字段名不一致的问题" class="headerlink" title="5.解决属性名和字段名不一致的问题"></a>5.解决属性名和字段名不一致的问题</h3><h4 id="5-1例子数据库中字段：-id，name-，pwd"><a href="#5-1例子数据库中字段：-id，name-，pwd" class="headerlink" title="5.1例子数据库中字段：  id，name ，pwd"></a>5.1例子数据库中字段：  id，name ，pwd</h4><p>Javabean中字段： id，name，password</p>
 <p>测试会报错</p>
@@ -635,374 +531,187 @@
 <li>只有当会话关闭或者提交的时候，才会提交到二级缓存中</li>
 </ul>
 <p>缓存原理</p>
-<p><img src="https://i.loli.net/2021/06/08/Xrz9iKW8FIodjCx.png" alt="20201030140755274.png"></p>
+<p><img src="https://i.loli.net/2021/06/08/Xrz9iKW8FIodjCx.png" srcset="/img/loading.gif" lazyload alt="20201030140755274.png"></p>
 
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF/" rel="tag"># 前后端</a>
-          
-            <a href="/tags/SSM/" rel="tag"># SSM</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2021/06/03/Spring-AOP/" rel="next" title="Spring-AOP">
-                <i class="fa fa-chevron-left"></i> Spring-AOP
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/06/12/SpringMVC/" rel="prev" title="SpringMVC">
-                SpringMVC <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/touxiang.jpeg"
-                alt="" />
-            
-              <p class="site-author-name" itemprop="name"></p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/%20%7C%7C%20archive">
-              
-                  <span class="site-state-item-count">11</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/island443" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
             </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF/">前后端</a>
+                    
+                      <a class="hover-with-bg" href="/tags/SSM/">SSM</a>
+                    
+                  </div>
+                
+              </div>
               
-            
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/12/SpringMVC/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SpringMVC</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/03/Spring-AOP/">
+                        <span class="hidden-mobile">Spring-AOP</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Mybatis%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">1.Mybatis介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1%E4%BB%80%E4%B9%88%E6%98%AFMyBatis%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1.1什么是MyBatis？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2%E6%80%8E%E4%B9%88%E8%8E%B7%E5%8F%96MyBatis"><span class="nav-number">1.2.</span> <span class="nav-text">1.2怎么获取MyBatis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">1.3什么是数据持久化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4MyBatis%E7%89%B9%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">1.4MyBatis特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-MyBatis%E5%85%A5%E9%97%A8"><span class="nav-number">2.</span> <span class="nav-text">2.MyBatis入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1%E5%85%A5%E9%97%A8%E6%A1%88%E4%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">2.1入门案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-SqlSessionFactory%E5%92%8CSqlSession%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 SqlSessionFactory和SqlSession个人理解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-CRUD"><span class="nav-number">3.</span> <span class="nav-text">3.CRUD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-namespace"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 namespace</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Select"><span class="nav-number">4.</span> <span class="nav-text">3.2 Select</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-Insert-Update-Delete"><span class="nav-number">4.1.</span> <span class="nav-text">3.3 Insert   Update   Delete</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4%E4%B8%87%E8%83%BD%E7%9A%84Map"><span class="nav-number">4.2.</span> <span class="nav-text">3.4万能的Map</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AE%E8%A7%A3%E6%9E%90"><span class="nav-number">5.</span> <span class="nav-text">4.配置解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1%E6%A0%B8%E5%BF%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">4.1核心配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%EF%BC%88environments%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">4.2环境配置（environments）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3%E7%B1%BB%E5%9E%8B%E5%88%AB%E5%90%8D%EF%BC%88typeAliases%EF%BC%89"><span class="nav-number">5.3.</span> <span class="nav-text">4.3类型别名（typeAliases）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4%E8%AE%BE%E7%BD%AE%EF%BC%88Settings%EF%BC%89"><span class="nav-number">5.4.</span> <span class="nav-text">4.4设置（Settings）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88mappers%EF%BC%89"><span class="nav-number">5.5.</span> <span class="nav-text">4.5映射器（mappers）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">5.6.</span> <span class="nav-text">4.6生命周期和作用域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%A7%A3%E5%86%B3%E5%B1%9E%E6%80%A7%E5%90%8D%E5%92%8C%E5%AD%97%E6%AE%B5%E5%90%8D%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">5.解决属性名和字段名不一致的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1%E4%BE%8B%E5%AD%90%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E5%AD%97%E6%AE%B5%EF%BC%9A-id%EF%BC%8Cname-%EF%BC%8Cpwd"><span class="nav-number">6.1.</span> <span class="nav-text">5.1例子数据库中字段：  id，name ，pwd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">6.2.</span> <span class="nav-text">5.2解决方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-ResultMap"><span class="nav-number">7.</span> <span class="nav-text">6.ResultMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91"><span class="nav-number">8.</span> <span class="nav-text">7.使用注解开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E4%B8%80%E5%AF%B9%E4%B8%80%E5%A4%84%E7%90%86"><span class="nav-number">9.</span> <span class="nav-text">8.一对一处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1%E6%8C%89%E7%85%A7%E7%BB%93%E6%9E%9C%E5%B5%8C%E5%A5%97%E5%A4%84%E7%90%86"><span class="nav-number">9.1.</span> <span class="nav-text">8.1按照结果嵌套处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2%E6%8C%89%E7%85%A7%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97%E5%A4%84%E7%90%86"><span class="nav-number">9.2.</span> <span class="nav-text">8.2按照查询嵌套处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91"><span class="nav-number">9.3.</span> <span class="nav-text">8.3注解开发</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%A4%84%E7%90%86"><span class="nav-number">10.</span> <span class="nav-text">9一对多处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E7%85%A7%E7%BB%93%E6%9E%9C%E5%B5%8C%E5%A5%97%E6%9F%A5%E8%AF%A2"><span class="nav-number">10.1.</span> <span class="nav-text">按照结果嵌套查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%89%E7%85%A7%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97%E5%A4%84%E7%90%86"><span class="nav-number">10.2.</span> <span class="nav-text">按照查询嵌套处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91"><span class="nav-number">10.3.</span> <span class="nav-text">注解开发</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10%E5%8A%A8%E6%80%81Sql"><span class="nav-number">11.</span> <span class="nav-text">10动态Sql</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#if"><span class="nav-number">11.0.0.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#choose"><span class="nav-number">11.0.0.2.</span> <span class="nav-text">choose</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#trim-where-set"><span class="nav-number">11.0.0.3.</span> <span class="nav-text">trim(where,set)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Foreach"><span class="nav-number">11.0.0.4.</span> <span class="nav-text">Foreach</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E7%BC%93%E5%AD%98"><span class="nav-number">12.</span> <span class="nav-text">11.缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BC%93%E5%AD%98-Cache"><span class="nav-number">12.0.1.</span> <span class="nav-text">什么是缓存[Cache]?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E7%BC%93%E5%AD%98%EF%BC%9F"><span class="nav-number">12.0.2.</span> <span class="nav-text">为什么使用缓存？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E6%95%B0%E6%8D%AE%E8%83%BD%E4%BD%BF%E7%94%A8%E7%BC%93%E5%AD%98%EF%BC%9F"><span class="nav-number">12.0.3.</span> <span class="nav-text">什么样的数据能使用缓存？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mybatis%E7%BC%93%E5%AD%98"><span class="nav-number">12.1.</span> <span class="nav-text">Mybatis缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="nav-number">12.2.</span> <span class="nav-text">一级缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98"><span class="nav-number">12.3.</span> <span class="nav-text">二级缓存</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
+          </article>
+        </div>
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">zhaoxw</span>
-
-  
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
       </div>
     
-
-    
-
   </div>
+</div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<!-- Custom -->
 
 
+    
 
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
 
+    
+  </main>
 
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
   
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
 
   
+</footer>
+
+
+  <!-- SCRIPTS -->
   
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
 
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
 
 
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
+<!-- Plugins -->
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
 
 
-  
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
 
 
 
@@ -1015,26 +724,12 @@
 
 
 
-  
 
 
 
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
 
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
