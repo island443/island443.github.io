@@ -27,6 +27,12 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/a11y-dark.min.css" />
+    
+  
 
   
     <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
@@ -50,7 +56,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/jiazai.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -152,7 +158,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/img/post.webp') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -183,15 +189,6 @@
     </span>
   
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      16
-       分钟
-    </span>
   
 
   
@@ -225,11 +222,11 @@
               <p>Java web 三大组件： Servlet(处理请求), Filter（过滤拦截请求）, Listener（监听器）</p>
 <h3 id="Filter-过滤器"><a href="#Filter-过滤器" class="headerlink" title="Filter(过滤器)"></a>Filter(过滤器)</h3><p>当客户端向服务器端发送一个请求时，如果有对应的过滤器进行拦截，过滤器可以改变请求的内容、或者重新设置请求协议的相关信息等，然后再将请求发送给服务器端的Servlet进行处理。当Servlet对客户端做出响应时，过滤器同样可以进行拦截，将响应内容进行修改或者重新设置后，再响应给客户端浏览器。在上述过程中，客户端与服务器端并不需要知道过滤器的存在。</p>
 <p>在一个Web应用程序中，可以部署多个过滤器进行拦截，这些过滤器组成了一个过滤器链。过滤器链中的每个过滤器负责特定的操作和任务，客户端的请求在这些过滤器之间传递，直到服务器端的Servlet。</p>
-<p><img src="https://i.loli.net/2021/05/23/KaMsdQ4SVP7mIZY.png" srcset="/img/loading.gif" lazyload alt="QQ图片20210523152348.png"></p>
+<p><img src="https://i.loli.net/2021/05/23/KaMsdQ4SVP7mIZY.png" srcset="/img/jiazai.gif" lazyload alt="QQ图片20210523152348.png"></p>
 <p>代码实现：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//编写类来实现Filter接口</span><br><span class="line">public class MyFilter implements Filter &#123;</span><br><span class="line">		</span><br><span class="line">	public void destroy() &#123;</span><br><span class="line">		//销毁时调用</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void init(FilterConfig filterConfig) throws ServletException &#123;</span><br><span class="line">		//初始化方法  接收一个FilterConfig类型的参数 该参数是对Filter的一些配置	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)</span><br><span class="line">			throws IOException, ServletException &#123;</span><br><span class="line">		//过滤方法 主要是对request和response进行一些处理，然后交给下一个过滤器或Servlet处理</span><br><span class="line">		System.out.println(&quot;过滤之前&quot;);</span><br><span class="line">		chain.doFilter(request, response); //交给下一个过滤器或servlet处理</span><br><span class="line">		System.out.println(&quot;过滤之后&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//编写类来实现Filter接口</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>&#123;<br>		<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroy</span><span class="hljs-params">()</span> </span>&#123;<br>		<span class="hljs-comment">//销毁时调用</span><br>		<br>	&#125;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(FilterConfig filterConfig)</span> <span class="hljs-keyword">throws</span> ServletException </span>&#123;<br>		<span class="hljs-comment">//初始化方法  接收一个FilterConfig类型的参数 该参数是对Filter的一些配置	</span><br>	&#125;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doFilter</span><span class="hljs-params">(ServletRequest request, ServletResponse response, FilterChain chain)</span></span><br><span class="hljs-function">			<span class="hljs-keyword">throws</span> IOException, ServletException </span>&#123;<br>		<span class="hljs-comment">//过滤方法 主要是对request和response进行一些处理，然后交给下一个过滤器或Servlet处理</span><br>		System.out.println(<span class="hljs-string">&quot;过滤之前&quot;</span>);<br>		chain.doFilter(request, response); <span class="hljs-comment">//交给下一个过滤器或servlet处理</span><br>		System.out.println(<span class="hljs-string">&quot;过滤之后&quot;</span>);<br>	&#125;<br>	<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//编写web.xml中的配置文件</span><br><span class="line">&lt;filter&gt;</span><br><span class="line"> &lt;filter-name&gt;MyFilter&lt;/filter-name&gt;</span><br><span class="line"> &lt;filter-class&gt;com.hebau.servlet.MyFilter&lt;/filter-class&gt;</span><br><span class="line"> &lt;/filter&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;filter-mapping&gt;</span><br><span class="line"> &lt;filter-name&gt;MyFilter&lt;/filter-name&gt;</span><br><span class="line"> &lt;url-pattern&gt;/filter.jsp&lt;/url-pattern&gt;</span><br><span class="line"> &lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs pgsql">//编写web.xml中的配置文件<br>&lt;<span class="hljs-keyword">filter</span>&gt;<br> &lt;<span class="hljs-keyword">filter</span>-<span class="hljs-type">name</span>&gt;MyFilter&lt;/<span class="hljs-keyword">filter</span>-<span class="hljs-type">name</span>&gt;<br> &lt;<span class="hljs-keyword">filter</span>-<span class="hljs-keyword">class</span>&gt;com.hebau.servlet.MyFilter&lt;/<span class="hljs-keyword">filter</span>-<span class="hljs-keyword">class</span>&gt;<br> &lt;/<span class="hljs-keyword">filter</span>&gt;<br> <br> &lt;<span class="hljs-keyword">filter</span>-<span class="hljs-keyword">mapping</span>&gt;<br> &lt;<span class="hljs-keyword">filter</span>-<span class="hljs-type">name</span>&gt;MyFilter&lt;/<span class="hljs-keyword">filter</span>-<span class="hljs-type">name</span>&gt;<br> &lt;url-pattern&gt;/<span class="hljs-keyword">filter</span>.jsp&lt;/url-pattern&gt;<br> &lt;/<span class="hljs-keyword">filter</span>-<span class="hljs-keyword">mapping</span>&gt;<br></code></pre></div></td></tr></table></figure>
 
 
 
@@ -242,13 +239,13 @@
 <p><strong>HttpSessionListener</strong>    监听Httpsession域的创建与销毁的监听器。HttpSession对象的生命周期：第一次调用request.getSession时创建；销毁有以下几种情况（服务器关闭、session过期、 手动销毁）</p>
 <p><strong>ServletRequestListener</strong>   监听ServletRequest域创建与销毁的监听器。ServletRequest的生命周期：每一次请求都会创建request，请求结束则销毁。</p>
 <p>代码实现：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//编写类实现ServletContextListener接口</span><br><span class="line">public class MyListener implements ServletContextListener  &#123;</span><br><span class="line"></span><br><span class="line">	public void contextDestroyed(ServletContextEvent sce) &#123;</span><br><span class="line">		// ServletContext销毁时执行</span><br><span class="line">		System.out.println(&quot;destroy....&quot;);	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void contextInitialized(ServletContextEvent sce) &#123;</span><br><span class="line">		// ServletContext创建时执行</span><br><span class="line">		System.out.println(&quot;init....&quot;);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs arduino"><span class="hljs-comment">//编写类实现ServletContextListener接口</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyListener</span> <span class="hljs-title">implements</span> <span class="hljs-title">ServletContextListener</span>  &#123;</span><br><br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">contextDestroyed</span><span class="hljs-params">(ServletContextEvent sce)</span> </span>&#123;<br>		<span class="hljs-comment">// ServletContext销毁时执行</span><br>		System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;destroy....&quot;</span>);	<br>	&#125;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">contextInitialized</span><span class="hljs-params">(ServletContextEvent sce)</span> </span>&#123;<br>		<span class="hljs-comment">// ServletContext创建时执行</span><br>		System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;init....&quot;</span>);<br>	&#125;	<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
 
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//在web.xml中编写配置文件</span><br><span class="line">&lt;listener&gt;</span><br><span class="line">&lt;listener-class&gt;com.hebau.servlet.MyListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs dts"><span class="hljs-comment">//在web.xml中编写配置文件</span><br><span class="hljs-params">&lt;listener&gt;</span><br><span class="hljs-params">&lt;listener-class&gt;</span>com.hebau.servlet.MyListener<span class="hljs-params">&lt;/listener-class&gt;</span><br><span class="hljs-params">&lt;/listener&gt;</span><br></code></pre></div></td></tr></table></figure>
 
-<p><img src="https://i.loli.net/2021/05/23/2FUCInokPS9T6Mv.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://i.loli.net/2021/05/23/2FUCInokPS9T6Mv.png" srcset="/img/jiazai.gif" lazyload></p>
 <h3 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h3><p>Servlet是三组件中最重要的一部分，但对于Servlet这里只谈谈个人理解，不谈应用</p>
 <ul>
 <li><p>Servlet不能独立运行，它必须被部署到Servelt容器中，由容器来实例化和调用Servlet方法，Servlet容器在Servlet生命周期内包容和管理Servelt。</p>
@@ -287,13 +284,13 @@
             <div>
               <div class="post-metas mb-3">
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF/">前后端</a>
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
                     
                   </div>
+                
                 
               </div>
               
@@ -329,6 +326,15 @@
               
             </div>
 
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
             
           </article>
         </div>
@@ -389,6 +395,30 @@
      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
   </div>
   
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
 
   
 
@@ -424,6 +454,8 @@
 
 
 
+  
+
 
 
   <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
@@ -445,6 +477,8 @@
   <script  src="/js/local-search.js" ></script>
 
 
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
@@ -469,6 +503,19 @@
 
 
 
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 
