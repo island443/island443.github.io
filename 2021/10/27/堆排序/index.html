@@ -18,9 +18,25 @@
   <meta name="author" content="zhaoxw">
   <meta name="keywords" content="">
   
-  <title>归档 - island443</title>
+  <title>堆排序 - island443</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -48,7 +64,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -142,14 +158,42 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/1212.jpeg') no-repeat center center;
+         style="background: url('/img/post.webp') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="堆排序">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-27 10:19" pubdate>
+        2021年10月27日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      662 字
+    </span>
+  
+
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -162,70 +206,110 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">堆排序</h1>
+            
+            <div class="markdown-body">
+              <h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><p><strong>堆排序</strong>是利用堆这种数据结构而设计的一种排序算法，堆排序的时间复杂度是O（N*logN），额外空间复杂度是O（1），是一个<strong>不稳定</strong>的排序。</p>
+<h6 id="1-堆的结构"><a href="#1-堆的结构" class="headerlink" title="1.堆的结构"></a>1.堆的结构</h6><p>堆的结构可分为大根堆和小根堆</p>
+<p>每个结点的值都大于其左孩子和右孩子结点的值，称之为大根堆。每个结点的值都小于其左孩子和右孩子结点的值，称之为小根堆，如下图：</p>
+<p><img src="https://i.loli.net/2021/10/27/lNZpVwUMctHuD4e.png" srcset="/img/jiazai.gif" lazyload alt="CSDN_1635302607144.jpg"></p>
+<p>在计算机中并不存在这样的结构，把上面的结构映射成一个数组，计算机存储的是这样的数组:</p>
+<p><img src="https://i.loli.net/2021/10/27/8KempDgZUzQh1nd.png" srcset="/img/jiazai.gif" lazyload alt="CSDN_1635302610507.jpg"></p>
+<p>这里有个知识点：如果查找数组中某个数的父结点或者其左右孩子结点，比如索引为i的数，那么:</p>
+<p>父结点索引：（i-1）/2</p>
+<p>左孩子索引：2*i+1</p>
+<p>右孩子索引：2*i+2</p>
+<h6 id="2-堆排序步骤"><a href="#2-堆排序步骤" class="headerlink" title="2.堆排序步骤"></a>2.堆排序步骤</h6><p>1.将待排序数构成大根堆（或小根堆）</p>
+<p>2.将顶端和末尾数交换，此时末尾数为最大值，剩余待排数n-1个</p>
+<p>3.将剩余n-1个数再构造大根堆，再将顶端数与n-1位置交换，如此反复，可得有序数组</p>
+<p>这个过程称之为堆排序</p>
+<p>由此，实现堆排序需要解决两个问题：（1）如何由一个无序序列建成一个堆？（2）如何在输出堆顶元素后,调整剩余元素成为一个新的堆？</p>
+<p>先看第二个问题。</p>
+<p><img src="https://i.loli.net/2021/10/27/bFq8crvC16gBQEz.png" srcset="/img/jiazai.gif" lazyload alt="C__8HD6_6CV29DP_V___SOJ.png"></p>
+<p>(a)是个堆，假设输出堆顶元素之后，以堆中最后一个元素替代之，如图（b)所示。此时根结点的左、右子树均为堆，则仅需自至下进行调整即可。首先以堆顶元素和其左、右子树根结点的值比较之，由于右子树根N点的值小于左子树根结点的值且小于根结点的值，则将27和97交换之；由于97替代27之后破坏了右子树的“堆”，则需进行和上述相同的调整，直至叶子结点，调整后的状态如图(c)所示，此时堆顶为n-1个元素中的最小值。重复上述过程，将堆顶元素27和堆中最后一个元素97交换且调整，得到如图(d)所示新的堆。</p>
+<p>把这个从顶点至叶子的调整过程称为“筛选”</p>
+<p>从一个无序序列建堆的过程就是一个反复筛选的过程，从第一个非终端节点n/2开始，依次按结点往上筛选</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/algorithm/">algorithm</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/17/OpenGL/">
+                        <span class="hidden-mobile">OpenGL</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
                 
 
-<div class="list-group">
-  <p class="h4">共计 15 篇文章</p>
-  <hr>
-  
-  
-    
-      
-      <p class="h5">2021</p>
-    
-    <a href="/2021/06/05/Mybatis/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Mybatis</span>
-      <time style="float: right;">06-05</time>
-    </a>
-  
-    
-    <a href="/2021/06/03/Spring-AOP/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Spring-AOP</span>
-      <time style="float: right;">06-03</time>
-    </a>
-  
-    
-    <a href="/2021/05/23/Spring-bean%E7%AE%A1%E7%90%86/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Spring_bean管理</span>
-      <time style="float: right;">05-23</time>
-    </a>
-  
-    
-    <a href="/2021/05/23/JavaWeb/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JavaWeb</span>
-      <time style="float: right;">05-23</time>
-    </a>
-  
-    
-    <a href="/2021/05/17/Spring-IOC/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Spring概述</span>
-      <time style="float: right;">05-17</time>
-    </a>
-  
-</div>
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2021/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
-
-
-
-
-              </div>
-            </div>
-          </div>
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -329,9 +413,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
 
 
 
