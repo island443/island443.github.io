@@ -18,7 +18,7 @@
   <meta name="author" content="zhaoxw">
   <meta name="keywords" content="">
   
-  <title>OpenGL - island443</title>
+  <title>关于算法的一些个人感悟 - island443</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="OpenGL">
+            <span class="h2" id="subtitle" title="关于算法的一些个人感悟">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-17 21:25" pubdate>
-        2021年10月17日 晚上
+      <time datetime="2021-11-22 15:39" pubdate>
+        2021年11月22日 下午
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      601 字
+      579 字
     </span>
   
 
@@ -216,17 +216,42 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">OpenGL</h1>
+            <h1 style="display: none">关于算法的一些个人感悟</h1>
             
             <div class="markdown-body">
-              <h5 id="OpenGL绘制茶壶"><a href="#OpenGL绘制茶壶" class="headerlink" title="OpenGL绘制茶壶"></a>OpenGL绘制茶壶</h5><figure class="highlight reasonml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs reasonml">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;stdio.h&quot;</span><br><br>#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;windows.h&quot;</span><br>#<span class="hljs-keyword">include</span> &lt;glut.h&gt;<br>#<span class="hljs-keyword">include</span> &lt;stdlib.h&gt;<br><br><span class="hljs-comment">//对OpenGL进行初始设置，包括清除屏幕使用的颜色，使用glColor3f(1.0,0.0,0.0)设置茶壶的颜色为红色。</span><br><br><span class="hljs-comment">//颜色设置中设置色彩值范围从0.0到1.0,    0.0f表示最黑，1.0f表示最亮</span><br><br><span class="hljs-comment">//glClearColor后的第一个参数是Red Intensity（红色分量），第二个是绿色分量，第三个是蓝色分量，第四个</span><br><span class="hljs-comment">//是Alpha值代表透明度，因此使用glClearColor（0.0,0.0,0.0,0.0）时，系统将用黑色清除屏幕</span><br><br>void init<span class="hljs-literal">()</span> &#123;   <span class="hljs-comment">//此处开始对OpenGL进行所有配置</span><br>	gl<span class="hljs-constructor">ClearColor(0.0, 0.0, 0.0, 0.0)</span>;   <span class="hljs-comment">//黑色背景</span><br>	gl<span class="hljs-constructor">Color3f(1.0, 0.0, 0.0)</span>;   <span class="hljs-comment">//设置茶壶为红色</span><br>&#125;<br><br><br><span class="hljs-comment">//以下是所有的绘制代码，任何想在屏幕中显示的内容都可以通过此段代码来实现，使用glClear(GL_COLOR_BUFFER_BIT)</span><br><span class="hljs-comment">//清除颜色缓存，然后使用glut辅助函数库glutWireTeapot绘制一个线框茶壶</span><br>void display<span class="hljs-literal">()</span> &#123;	<span class="hljs-comment">//从这里开始进行所有的绘制</span><br>	gl<span class="hljs-constructor">Clear(GL_COLOR_BUFFER_BIT)</span>;	<span class="hljs-comment">//清除屏幕中的内容</span><br>	glut<span class="hljs-constructor">WireTeapot(0.8)</span>; <span class="hljs-comment">//绘制茶壶</span><br>	gl<span class="hljs-constructor">Flush()</span>;<br>&#125;<br><br><br><span class="hljs-comment">//重置OpenGL窗口大小，不管窗口大小是否已经改变，它都将以透视图的方式运行，场景尺寸被设置成它显示时</span><br><span class="hljs-comment">//所在窗口大小</span><br>void my<span class="hljs-constructor">Reshape(GLsizei <span class="hljs-params">w</span>, GLsizei <span class="hljs-params">h</span>)</span> &#123; <span class="hljs-comment">//重置OpenGL窗口大小</span><br>	gl<span class="hljs-constructor">Viewport(0, 0, <span class="hljs-params">w</span>, <span class="hljs-params">h</span>)</span>;   <span class="hljs-comment">//重置当前的视口</span><br>	gl<span class="hljs-constructor">MatrixMode(GL_PROJECTION)</span>;  <span class="hljs-comment">//选择投影矩阵</span><br>	gl<span class="hljs-constructor">LoadIdentity()</span>;	<span class="hljs-comment">//重置投影矩阵</span><br>	<span class="hljs-keyword">if</span> (w &lt;= h)<br>		gl<span class="hljs-constructor">Ortho(-1.5, 1.5, -1.5 <span class="hljs-operator">*</span> (GLfloat)</span>h<span class="hljs-operator"> / </span>(GLfloat)w, <span class="hljs-number">1.50</span><span class="hljs-operator"> * </span>(GLfloat)h<span class="hljs-operator"> / </span>(GLfloat)w, -<span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span>);<br>	<span class="hljs-keyword">else</span><br>		gl<span class="hljs-constructor">Ortho(-1.5 <span class="hljs-operator">*</span> (GLfloat)</span>w<span class="hljs-operator"> / </span>(GLfloat)h, <span class="hljs-number">1.5</span><span class="hljs-operator"> * </span>(GLfloat)w<span class="hljs-operator"> / </span>(GLfloat)h, -<span class="hljs-number">1.5</span>, <span class="hljs-number">1.5</span>, -<span class="hljs-number">10.0</span>, <span class="hljs-number">10.0</span>);<br>	gl<span class="hljs-constructor">MatrixMode(GL_MODELVIEW)</span>;<br>	gl<span class="hljs-constructor">LoadIdentity()</span>;<br>&#125;<br><br><br><span class="hljs-comment">//下面的main()函数是整个程序的入口函数，通过函数调用的方式进行程序初始化后，设置单缓存，屏幕显示色彩</span><br><span class="hljs-comment">//方式为RGB模式，窗口大小为（500,500），并定义窗口的初始位置，最后调用显示函glutDisplayFunc(display)将茶壶显示出来</span><br><br><span class="hljs-built_in">int</span> main(<span class="hljs-built_in">int</span> argc,<span class="hljs-built_in">char</span>**argv) &#123;<br><br>	glut<span class="hljs-constructor">Init(&amp;<span class="hljs-params">argc</span>, <span class="hljs-params">argv</span>)</span>;<br><br>	<span class="hljs-comment">//设置窗口显示模式为RGB方式，即彩色方式，并将图形缓存设为单缓存</span><br>	glut<span class="hljs-constructor">InitDisplayMode(GLUT_SINGLE | GLUT_RGB)</span>;<br>	glut<span class="hljs-constructor">InitWindowSize(500, 500)</span>;	<span class="hljs-comment">//定义窗口的宽度高，度</span><br>	glut<span class="hljs-constructor">InitWindowPosition(0, 0)</span>;	<span class="hljs-comment">//定义窗口的初始位置</span><br>	glut<span class="hljs-constructor">CreateWindow(<span class="hljs-string">&quot;OpenGL程序&quot;</span>)</span>;<br>	init<span class="hljs-literal">()</span>;<br>	glut<span class="hljs-constructor">ReshapeFunc(<span class="hljs-params">myReshape</span>)</span>;<br>	glut<span class="hljs-constructor">DisplayFunc(<span class="hljs-params">display</span>)</span>;<br>	glut<span class="hljs-constructor">MainLoop()</span>;<br>	return <span class="hljs-number">0</span>;<br>&#125;<br><br><br></code></pre></div></td></tr></table></figure>
+              <h5 id="异或"><a href="#异或" class="headerlink" title="异或(^)"></a>异或(^)</h5><p>因为不论是在C语言还是Java课堂上，老师对于位运算都是简单聊了聊怎么算，没有深入了解其在算法上的应用，加上当初记不太清异或等怎么算，所以一直对这块知识掌握的不太好，其实异或在算法上应用还是比较多的。</p>
+<ul>
+<li>异或运算是相同为0，不同为1。可以把异或当成无进位的加法来记就好记了。</li>
+<li>一个数与0异或得到其本身</li>
+<li>一个数和自己异或得到0</li>
+</ul>
+<p>一个交换2个数的小例子，可以用下面3行异或运算来完成（但是要注意两个数不能是同一个地址，否则会被洗成0）</p>
+<figure class="highlight inform7"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs inform7">public static void swap(int<span class="hljs-comment">[]</span> arr,int i,int j) &#123;<br>		arr<span class="hljs-comment">[i]</span>=arr<span class="hljs-comment">[i]</span>^arr<span class="hljs-comment">[j]</span>;<br>		arr<span class="hljs-comment">[j]</span>=arr<span class="hljs-comment">[i]</span>^arr<span class="hljs-comment">[j]</span>;<br>		arr<span class="hljs-comment">[i]</span>=arr<span class="hljs-comment">[i]</span>^arr<span class="hljs-comment">[j]</span>;	<br>	&#125;<br></code></pre></div></td></tr></table></figure>
 
-<p>撒</p>
+
+
+<p><strong>假如有一个数组，里面有一个出现奇数次的数，其余全是出现偶数次的数，如何找出那个奇数次的数？</strong></p>
+<p>可以使用异或，从第一个数直接怼到最后一个数全部异或，因为偶数次的数异或全得到0，最后会只剩下那个出现奇数次的数。</p>
+<p><strong>那么如果有2个出现奇数次的数，其余全是出现偶次数的数，那么怎么找出2个出现奇次数的数呢？</strong></p>
+<p>还可以使用异或，从头异或到位，会得到那两个出现奇次数的数的异或结果，这个结果是肯定不为0的。这个数的二进制表示里面肯定有一位是1，代表着这两个数在那一位是不相同的。找到二进制表示里最右面的那位为1的位次。把这位次为1的所有数异或可得到一个出现奇次数的数，把这位次为0的所有数异或可得到另一个出现奇次数的数。</p>
+<figure class="highlight fortran"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs fortran"><span class="hljs-keyword">public</span> static void qurysum(<span class="hljs-built_in">int</span>[] arr) &#123;<br>		<span class="hljs-built_in">int</span> <span class="hljs-keyword">eor</span>=<span class="hljs-number">0</span>;<br>		<br>		for(<span class="hljs-built_in">int</span> arrs:arr) &#123;<br>			<span class="hljs-keyword">eor</span>=<span class="hljs-keyword">eor</span>^arrs;<br>		&#125;<br>		//<span class="hljs-keyword">eor</span><span class="hljs-comment">!=0</span><br>		//<span class="hljs-keyword">eor</span>必有一位为<span class="hljs-number">1</span>		<br>		<span class="hljs-built_in">int</span> rightOne=<span class="hljs-keyword">eor</span>&amp;(~<span class="hljs-keyword">eor</span>+<span class="hljs-number">1</span>);	//得到那一位为<span class="hljs-number">1</span>其余为全为<span class="hljs-number">0</span>的数<br>		<br>		<span class="hljs-built_in">int</span> onlyOne=<span class="hljs-number">0</span>;<br>		for(<span class="hljs-built_in">int</span> i:arr) &#123;<br>			<span class="hljs-keyword">if</span>((arr[i]&amp;onlyOne)==<span class="hljs-number">0</span>) &#123;<br>				onlyOne=onlyOne^arr[i];		//<span class="hljs-keyword">eor</span>则为一个奇数<br>			&#125;		<br>		&#125;	<br>	&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+
+
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/algorithm/">algorithm</a>
+                    
+                  </div>
                 
                 
               </div>
@@ -242,9 +267,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/11/17/LeetCode1/">
+                      <a href="/2021/11/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode1</span>
+                        <span class="hidden-mobile">排序算法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -252,8 +277,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/10/python/">
-                        <span class="hidden-mobile">python</span>
+                      <a href="/2021/11/21/python%E7%88%AC%E8%99%AB%E5%92%8C%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">
+                        <span class="hidden-mobile">python爬虫和异步编程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

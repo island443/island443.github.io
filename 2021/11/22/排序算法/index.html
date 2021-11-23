@@ -18,7 +18,7 @@
   <meta name="author" content="zhaoxw">
   <meta name="keywords" content="">
   
-  <title>堆排序 - island443</title>
+  <title>排序算法 - island443</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="堆排序">
+            <span class="h2" id="subtitle" title="排序算法">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-27 10:19" pubdate>
-        2021年10月27日 上午
+      <time datetime="2021-11-22 15:39" pubdate>
+        2021年11月22日 下午
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      662 字
+      1.4k 字
     </span>
   
 
@@ -216,10 +216,33 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">堆排序</h1>
+            <h1 style="display: none">排序算法</h1>
             
             <div class="markdown-body">
-              <h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><p><strong>堆排序</strong>是利用堆这种数据结构而设计的一种排序算法，堆排序的时间复杂度是O（N*logN），额外空间复杂度是O（1），是一个<strong>不稳定</strong>的排序。</p>
+              <h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择排序就是从数组中第0<del>n-1位置上的数中取一个最小的放在第0位，然后再从1</del>n-1位置上的数中再取一个最小的放在第1位，依次到排到最后…</p>
+<p>选择排序的时间复杂度是O(N^2)</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs aspectj"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">selectSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;<br>		<span class="hljs-keyword">if</span>(arr.length&lt;=<span class="hljs-number">1</span> || arr==<span class="hljs-keyword">null</span>) &#123;<br>			<span class="hljs-keyword">return</span>;<br>		&#125;<br>			<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;arr.length<span class="hljs-number">-1</span>;i++) &#123;	<span class="hljs-comment">//i~n-1</span><br>						<br>			<span class="hljs-keyword">int</span> minindex=i;<br>			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i+<span class="hljs-number">1</span>;j&lt;arr.length;j++) &#123;	<span class="hljs-comment">//i~n-1上找最小值下标</span><br>				minindex=arr[j]&gt;arr[minindex]? minindex : j;<br>			&#125;		<br>			swap(arr,minindex,i);				<br>		&#125;			<br>	&#125;<br>		<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr,<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j)</span> </span>&#123;<br>		<span class="hljs-keyword">int</span> mid=arr[i];<br>		arr[i]=arr[j];<br>		arr[j]=mid;<br>	&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>冒泡排序是把数组中第0个数和第一个数比较，若arr[0]&gt;arr[1],则交换位置，在把arr[1]和arr[2]比较，若arr[1]&gt;arr[2],则交换位置，这样能把最大的数换到数组末尾，再从头进行比较到倒数第二个数，以此类推…</p>
+<p>冒泡排序的算法复杂度是O(N^2)</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs aspectj"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">BubblingSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(arr.length&lt;=<span class="hljs-number">1</span> || arr==<span class="hljs-keyword">null</span>) &#123;<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>		<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=arr.length<span class="hljs-number">-1</span>;i&gt;<span class="hljs-number">0</span>;i--) &#123;			<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;i;j++) &#123;<br>			<span class="hljs-keyword">if</span>(arr[j]&gt;arr[j+<span class="hljs-number">1</span>]) &#123;<br>				swap(arr,j+<span class="hljs-number">1</span>,j);<br>			&#125;			<br>		&#125;			<br>	&#125;	<br>&#125;<br>	<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr,<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> mid=arr[i];<br>	arr[i]=arr[j];<br>	arr[j]=mid;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序是先排好数组中的第0<del>1的数，再拿第2个数和前面比较是否交换，这样就排好了0</del>2个数。再拿第3个数和前面进行比较，以此类推…</p>
+<p>插入排序是不稳定的排序，理想的时间复杂度为O(N)，最坏情况下的时间复杂度为O(N^2)。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs aspectj"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">InsertSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(arr.length&lt;=<span class="hljs-number">1</span> || arr==<span class="hljs-keyword">null</span>) &#123;<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>			<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;arr.length;i++) &#123;		<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i;j&gt;<span class="hljs-number">0</span>;j--) &#123;<br>			<span class="hljs-keyword">if</span>(arr[j]&lt;arr[j<span class="hljs-number">-1</span>]) &#123;<br>				swap(arr,j,j<span class="hljs-number">-1</span>);<br>			&#125;				<br>		&#125;			<br>	&#125;		<br>&#125;<br>	<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr,<span class="hljs-keyword">int</span> i,<span class="hljs-keyword">int</span> j)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span> mid=arr[i];<br>	arr[i]=arr[j];<br>	arr[j]=mid;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h3 id="合并排序"><a href="#合并排序" class="headerlink" title="合并排序"></a>合并排序</h3><p>合并排序的时间复杂度是O(N*log2N)</p>
+<figure class="highlight arduino"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">MergeSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(arr.length&lt;=<span class="hljs-number">1</span> || arr==null) &#123;<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-built_in">process</span>(arr,<span class="hljs-number">0</span>,arr.length<span class="hljs-number">-1</span>);<br>	<br>&#125;<br><br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">process</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr,<span class="hljs-keyword">int</span> L,<span class="hljs-keyword">int</span> R)</span> </span>&#123;<br>	<span class="hljs-keyword">if</span>(L==R) &#123;<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<br>	<span class="hljs-keyword">int</span> mid=L+((R-L) &gt;&gt; <span class="hljs-number">1</span>); <br>	<span class="hljs-built_in">process</span>(arr,L,mid);<br>	<span class="hljs-built_in">process</span>(arr,mid+<span class="hljs-number">1</span>,R);<br>	<span class="hljs-built_in">Merge</span>(arr,L,mid,R);<br>	<br>&#125;<br><br><br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr,<span class="hljs-keyword">int</span> L,<span class="hljs-keyword">int</span> mid,<span class="hljs-keyword">int</span> R)</span> </span>&#123;<br>	<span class="hljs-keyword">int</span>[] help=<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[R-L+<span class="hljs-number">1</span>];<br>	<br>	<span class="hljs-keyword">int</span> p=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">int</span> i=L;<br>	<span class="hljs-keyword">int</span> j=mid+<span class="hljs-number">1</span>;<br>	<br>	<span class="hljs-keyword">while</span>(i&lt;=mid&amp;&amp;j&lt;=R) &#123;<br>		help[p++]=arr[i]&lt;=arr[j] ? arr[i++]: arr[j++];<br>	&#125;<br>	<br>	<span class="hljs-keyword">while</span>(j&lt;=R) &#123;<br>		help[p++]=arr[j++];<br>	&#125;<br>	<br>	<span class="hljs-keyword">while</span>(i&lt;=mid)&#123;<br>		help[p++]=arr[i++];<br>	&#125;<br>		<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> e=<span class="hljs-number">0</span>;e&lt;help.length;e++) &#123;<br>		arr[L+e]=help[e];<br>	&#125;<br>		<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p><strong>堆排序</strong>是利用堆这种数据结构而设计的一种排序算法，堆排序的时间复杂度是O（N*logN），额外空间复杂度是O（1），是一个<strong>不稳定</strong>的排序。</p>
 <h6 id="1-堆的结构"><a href="#1-堆的结构" class="headerlink" title="1.堆的结构"></a>1.堆的结构</h6><p>堆的结构可分为大根堆和小根堆</p>
 <p>每个结点的值都大于其左孩子和右孩子结点的值，称之为大根堆。每个结点的值都小于其左孩子和右孩子结点的值，称之为小根堆，如下图：</p>
 <p><img src="https://i.loli.net/2021/10/27/lNZpVwUMctHuD4e.png" srcset="/img/jiazai.gif" lazyload alt="CSDN_1635302607144.jpg"></p>
@@ -270,8 +293,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/17/OpenGL/">
-                        <span class="hidden-mobile">OpenGL</span>
+                      <a href="/2021/11/22/%E5%85%B3%E4%BA%8E%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E6%84%9F%E6%82%9F/">
+                        <span class="hidden-mobile">关于算法的一些个人感悟</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -1,0 +1,512 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="zhaoxw">
+  <meta name="keywords" content="">
+  
+  <title>python爬虫和异步编程 - island443</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/jiazai.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/post.webp') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="python爬虫和异步编程">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-21 09:20" pubdate>
+        2021年11月21日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">python爬虫和异步编程</h1>
+            
+            <div class="markdown-body">
+              <h2 id="爬虫"><a href="#爬虫" class="headerlink" title="爬虫"></a>爬虫</h2><h2 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h2><h3 id="1-基于协程的并行"><a href="#1-基于协程的并行" class="headerlink" title="1.基于协程的并行"></a>1.基于协程的并行</h3><h4 id="1-1基本原理"><a href="#1-1基本原理" class="headerlink" title="1.1基本原理"></a>1.1基本原理</h4><h5 id="1-1-1概述"><a href="#1-1-1概述" class="headerlink" title="1.1.1概述"></a>1.1.1概述</h5><p>协程是一种在线程中被调度的函数，也称微线程。它的调度与进程,线程不同，完全在用户空间中进行，即协程的调度器行为与操作系统无关。</p>
+<p>协程可以在等待异步I/O时立刻保存当前执行帧栈的上下文，并从调度器处返回，调度器会转而调度和执行其他协程。当OS通知调度器异步I/O结束后，调度器会带着异步I/O的结果调度该协程，并从内存中恢复上下文，从刚才退出协程的位置进入协程继续执行。</p>
+<p>协程并不会加快CPU绑定的（占用CPU时间的）代码的执行速度，应为协程始终在一个线程中被调度，它的真正威力允许下面这种行为，即当一个协程在等待异步I/O时，立刻转而调度执行其他协程的CPU绑定的代码，这意味着我们可以一次性调度多个协程，在同一时刻迅速发出多个I/O请求，并等待一起返回。</p>
+<p>所以，其主要用于场景是I/O密集程序，例如网络应用（HTTP Server ，Client），Node.js就是一个基于单线程非阻塞I/O的JavaScript Runtime，被主要用于HTTP后端应用的快速开发。</p>
+<h5 id="1-1-2Ptthon标准库对协程的支持"><a href="#1-1-2Ptthon标准库对协程的支持" class="headerlink" title="1.1.2Ptthon标准库对协程的支持"></a>1.1.2Ptthon标准库对协程的支持</h5><p>Python社区给出的协程基建asyncio设计并称不上好，主要是因为asyncio对上层暴露的接口比较底层，需要开发者自行决定何时启动调度器。</p>
+<p>asyncio的调度策略主要设计了四个抽象实体。</p>
+<p><strong>事件队列</strong>中存放所有应该被执行的<em><strong>Callable</strong></em>，可能是协程，也可能是普通函数。</p>
+<p><strong>事件循环</strong>会从事件队列中不断取出<em><strong>Callable</strong></em>执行，执行的过程中，一般会调用asyncio的其他接口从而发送更多<em><strong>Callable</strong></em>到队列中。</p>
+<p>除此之外，<strong>Tlmer队列</strong>是一个使用最近时间最小堆实现的优先队列，asyncio.sleep就是依赖它实现的。在协程的底层实现中，一般定时器都是直接实现在调度器内部，Python也一样。</p>
+<p>最后是异步任务的核心——<strong>I/O多路复用</strong>，或者叫OS事件队列，这个一般是使用<em><strong>polling</strong></em>实现的（也有select，但是他存在一些限制），I/O任务通过<em><strong>polling</strong></em>来进行等待，调度器阻塞在相关系统调用上，等待OS通知异步任务结束，这个回调不会立即执行，而是放到事件队列中，等下一次事件循环进行回调。</p>
+<h5 id="1-1-3协程的优点"><a href="#1-1-3协程的优点" class="headerlink" title="1.1.3协程的优点"></a>1.1.3协程的优点</h5><ul>
+<li>开销小</li>
+<li>一般情况下，不需要考虑在并发环境下对资源原子性访问的问题，节省了锁的开销</li>
+<li>逻辑更加简洁（相比线程来说，协程让从上下文推导代码逻辑变得更加简单）</li>
+</ul>
+<h4 id="1-2代码实现"><a href="#1-2代码实现" class="headerlink" title="1.2代码实现"></a>1.2代码实现</h4><h6 id="asyncio-run"><a href="#asyncio-run" class="headerlink" title="asyncio.run"></a>asyncio.run</h6><p>调用一个协程并不会使其被调度执行，而是返回一个内建的coroutine（协程）对象，我们可以通过asyncio.run方法来调度执行该线程，协程的某个行为与生成器函数非常类似，即协程函数在调用后不会直接执行，而是返回一个协程对象，实际上Python内部的协程函数和生成器函数共用一套实现</p>
+<figure class="highlight isbl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs isbl"><span class="hljs-variable">import</span> <span class="hljs-variable">asyncio</span><br><br><span class="hljs-variable">async</span> <span class="hljs-variable">def</span> <span class="hljs-function"><span class="hljs-title">fun1</span>():</span><br><span class="hljs-function">    <span class="hljs-title">print</span>(<span class="hljs-string">&quot;fun1 start&quot;</span>)</span><br>    <span class="hljs-variable">await</span> <span class="hljs-variable">asyncio.sleep</span>(<span class="hljs-number">1</span>)<br>    <span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-string">&quot;fun1 end&quot;</span>)</span><br>    <br><span class="hljs-variable">asyncio.run</span>(<span class="hljs-function"><span class="hljs-title">fun1</span>())    </span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<h6 id="await"><a href="#await" class="headerlink" title="await"></a>await</h6><p>除了使用asyncio对协程进行调度执行外，协程对象在其他协程函数的上下文中也可以通过await进行调度执行<br>await后的东西是一个异步任务，异步任务使用awaitable对象来表示<br>awaitable被称为可等待对象，指的是在协程函数中允许跟在await关键字后的对象</p>
+<figure class="highlight isbl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs isbl"><span class="hljs-variable">async</span> <span class="hljs-variable">def</span> <span class="hljs-function"><span class="hljs-title">fun2</span>():</span><br><span class="hljs-function">    <span class="hljs-title">print</span>(<span class="hljs-string">&quot;fun2 start&quot;</span>)</span><br>    <span class="hljs-variable">await</span> <span class="hljs-variable">asyncio.sleep</span>(<span class="hljs-number">1</span>)<br>    <span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-string">&quot;fun2 end&quot;</span>)</span><br><br><span class="hljs-variable">async</span> <span class="hljs-variable">def</span> <span class="hljs-function"><span class="hljs-title">main</span>():</span><br><span class="hljs-function">    <span class="hljs-variable">await</span> <span class="hljs-title">fun1</span>()</span><br>    <span class="hljs-variable">await</span> <span class="hljs-function"><span class="hljs-title">fun2</span>()</span><br><br><span class="hljs-variable">asyncio.run</span>(<span class="hljs-function"><span class="hljs-title">main</span>())</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<h6 id="asyncio-gather"><a href="#asyncio-gather" class="headerlink" title="asyncio.gather"></a>asyncio.gather</h6><p>asyncio.gather接收多个可等待对象，并返回一个可等待对象，当对返回的可等待对象，进行await时，将并发等待所有传入的可等待对象</p>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs css">async def main1():<br>    await asyncio.<span class="hljs-built_in">gather</span>(<span class="hljs-built_in">fun1</span>(),<span class="hljs-built_in">fun2</span>())<br><br>asyncio.<span class="hljs-built_in">run</span>(<span class="hljs-built_in">main1</span>())<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h6 id="asyncio-create-task"><a href="#asyncio-create-task" class="headerlink" title="asyncio.create_task"></a>asyncio.create_task</h6><p>事件循环是开始进行协程调度的入口，asyncio.run负责管理事件循环，将传入的协程绑定到事件循环中，而asyncio.create_task则是负责直接将所有传入的协程绑定到当前正在运行的时间循环上，该线程会被立刻自动调度执行，并返回一个Task对象，我们可以在异步上下文中await它.</p>
+<figure class="highlight isbl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs isbl"><span class="hljs-variable">async</span>  <span class="hljs-variable">def</span> <span class="hljs-function"><span class="hljs-title">main2</span>():</span><br><span class="hljs-function">    <span class="hljs-variable">task1</span>=<span class="hljs-variable">asyncio.create_task</span>(<span class="hljs-title">fun1</span>())</span><br>    <span class="hljs-variable">task2</span>=<span class="hljs-variable">asyncio.create_task</span>(<span class="hljs-function"><span class="hljs-title">fun2</span>())</span><br>    <span class="hljs-variable">await</span> <span class="hljs-variable">task1</span><br>    <span class="hljs-variable">await</span> <span class="hljs-variable">task2</span><br><span class="hljs-variable">asyncio.run</span>(<span class="hljs-function"><span class="hljs-title">main2</span>())</span><br></code></pre></div></td></tr></table></figure>
+
+<p>当我们调用asyncio.create_task后，该协程将会立刻被绑定到事件循环进行调度，而不必等待await时才绑定，与gather不同，gather调用时不会立刻开始调度执行，而是返回一个可等待对象，只有在开始等待时才开始调度执行</p>
+<h6 id="同步和异步I-O"><a href="#同步和异步I-O" class="headerlink" title="同步和异步I/O"></a>同步和异步I/O</h6><figure class="highlight isbl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs isbl"><span class="hljs-variable">def</span> <span class="hljs-function"><span class="hljs-title">fun3</span>():</span><br><span class="hljs-function">    <span class="hljs-variable">for</span> <span class="hljs-variable">_</span> <span class="hljs-variable"><span class="hljs-keyword">in</span></span> <span class="hljs-title">range</span>(<span class="hljs-number">100</span>):</span><br><span class="hljs-function">        <span class="hljs-variable">res</span>=<span class="hljs-variable">requests.get</span>(<span class="hljs-variable">url</span>=<span class="hljs-string">&#x27;http://gaolihai.cool&#x27;</span>)</span><br>        <span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-variable">res.text</span>)</span><br></code></pre></div></td></tr></table></figure>
+
+<p>requests.get就是一个典型同步I/O接口，如果服务器端需要200ms才响应，那么主线程就会阻塞200ms，直到操作系统通知I/O结束并恢复线程，继续执行这种接口的调用即便卸载协程中进行并发调用，也不会有任何效率的提升，因为协程本身是在一个线程中通过一个调度器进行调度执行的。<br>如果将同步I/O接口的调用放在协程中调度，I/O要花费1s，那么所有的协程的执行都将后延1s。</p>
+<p>一个典型的异步I/O接口就是非阻塞socket，或者一些第三方的同步HTTP请求库，例如aiohttp</p>
+<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros">import asynoic<br>import aiohttp<br><br>async def main():<br>	<span class="hljs-attribute">session</span>=aiohttp.CilentSession();<br>	<span class="hljs-attribute">res</span>=await session.<span class="hljs-builtin-name">get</span>(<span class="hljs-string">&quot;...&quot;</span>)<br><br>asyncio.<span class="hljs-builtin-name">run</span>(main())	<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h3 id="2-基于线程的并行"><a href="#2-基于线程的并行" class="headerlink" title="2.基于线程的并行"></a>2.基于线程的并行</h3>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Python/">Python</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/22/%E5%85%B3%E4%BA%8E%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E6%84%9F%E6%82%9F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">关于算法的一些个人感悟</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/17/LeetCode1/">
+                        <span class="hidden-mobile">LeetCode1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

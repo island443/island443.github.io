@@ -182,24 +182,20 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/10/27/%E5%A0%86%E6%8E%92%E5%BA%8F/" target="_self">
-          堆排序
+        <a href="/2021/11/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" target="_self">
+          排序算法
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/10/27/%E5%A0%86%E6%8E%92%E5%BA%8F/" target="_self">
+        <a href="/2021/11/22/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" target="_self">
           
           
             
           
-          堆排序堆排序是利用堆这种数据结构而设计的一种排序算法，堆排序的时间复杂度是O（N*logN），额外空间复杂度是O（1），是一个不稳定的排序。
-1.堆的结构堆的结构可分为大根堆和小根堆
-每个结点的值都大于其左孩子和右孩子结点的值，称之为大根堆。每个结点的值都小于其左孩子和右孩子结点的值，称之为小根堆，如下图：
-
-在计算机中并不存在这样的结构，把上面的结构映射成一个数组，计算机存储的是这样的数组:
-
-
+          选择排序选择排序就是从数组中第0n-1位置上的数中取一个最小的放在第0位，然后再从1n-1位置上的数中再取一个最小的放在第1位，依次到排到最后…
+选择排序的时间复杂度是O(N^2)
+1234567891011121314151617181920public static void selectSort(int[] arr) &#123;		if(arr.length&lt;=1 || arr==n
         </a>
       </p>
 
@@ -207,8 +203,151 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-27 10:19" pubdate>
-              2021-10-27
+            <time datetime="2021-11-22 15:39" pubdate>
+              2021-11-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/algorithm/">algorithm</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/22/%E5%85%B3%E4%BA%8E%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E6%84%9F%E6%82%9F/" target="_self">
+          关于算法的一些个人感悟
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/22/%E5%85%B3%E4%BA%8E%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E6%84%9F%E6%82%9F/" target="_self">
+          
+          
+            
+          
+          异或(^)因为不论是在C语言还是Java课堂上，老师对于位运算都是简单聊了聊怎么算，没有深入了解其在算法上的应用，加上当初记不太清异或等怎么算，所以一直对这块知识掌握的不太好，其实异或在算法上应用还是比较多的。
+
+异或运算是相同为0，不同为1。可以把异或当成无进位的加法来记就好记了。
+一个数与0异或得到其本身
+一个数和自己异或得到0
+
+一个交换2个数的小例子，可以用下面3行异或运算来完成（但是要注
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-22 15:39" pubdate>
+              2021-11-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/algorithm/">algorithm</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/21/python%E7%88%AC%E8%99%AB%E5%92%8C%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" target="_self">
+          python爬虫和异步编程
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/21/python%E7%88%AC%E8%99%AB%E5%92%8C%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" target="_self">
+          
+          
+            
+          
+          爬虫并行1.基于协程的并行1.1基本原理1.1.1概述协程是一种在线程中被调度的函数，也称微线程。它的调度与进程,线程不同，完全在用户空间中进行，即协程的调度器行为与操作系统无关。
+协程可以在等待异步I/O时立刻保存当前执行帧栈的上下文，并从调度器处返回，调度器会转而调度和执行其他协程。当OS通知调度器异步I/O结束后，调度器会带着异步I/O的结果调度该协程，并从内存中恢复上下文，从刚才退出协程的
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-21 09:20" pubdate>
+              2021-11-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Python/">Python</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/17/LeetCode1/" target="_self">
+          LeetCode1
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/17/LeetCode1/" target="_self">
+          
+          
+            
+          
+          1.两数之和给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出和为目标值 target 的那两个整数，并返回它们的数组下标。
+12345示例：输入：nums = [2,7,11,15], target = 9输出：[0,1]解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
+
+
+
+自己思路：
+两次for循环嵌套，得到值
+123456789
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-17 15:39" pubdate>
+              2021-11-17
             </time>
           </div>
         
@@ -488,172 +627,6 @@ I/O流有很多种，按照不同的分类方式，可以分为以下三类：
             
           </div>
         
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/11/Git/" target="_self">
-          Git
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/07/11/Git/" target="_self">
-          
-          
-            
-          
-          Git的使用教程1.Git是什么？
-​    Git是分布式版本控制系统
-2.SVN与Git的最主要区别？
-​    SVN是集中式版本控制系统，版本库集中放在中央服务器，而干活的时候，用的都是自己的电脑，所以首先要从中央服务器那里得到最新版本，然后干活，干完活，需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作，如果在局域网还可以，带宽够大，速度够快，如果在互联网下，如果网
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-11 11:02" pubdate>
-              2021-07-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Git/">Git</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/06/28/SSM%E6%95%B4%E5%90%88/" target="_self">
-          SSM整合
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/06/28/SSM%E6%95%B4%E5%90%88/" target="_self">
-          
-          
-            
-          
-          SSM-CRUD整合该项目为尚硅谷教学项目，b站链接：https://b23.tv/VQZtqB
-项目用IDEA2021写的，遇到许多错误大多在前面，不过很幸运最后都解决了。
-项目地址：https://github.com/island443/java
-项目应用以下技术：
-基础框架（SpringMVC+Spring+Mybatis）
-数据库-MySQL
-前端框架-bootstarp
-项目依赖管理M
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-06-28 12:38" pubdate>
-              2021-06-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/SSM/">SSM</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/06/12/SpringMVC/" target="_self">
-          SpringMVC
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/06/12/SpringMVC/" target="_self">
-          
-          
-            
-          
-          什么是MVC？
-MVC是模型（Model）、视图（View）、控制器（Controller）的简写，是一种软件设计规范。
-是将业务逻辑、数据、显示分离的方法来组织代码。
-MVC主要作用是降低了视图与业务逻辑间的双向耦合。
-MVC不是一种设计模式，MVC是一种架构模式。
-
-常见的服务器端MVC框架有：Struts、Spring MVC、ASP.NET MVC、Zend Framework、JSF  
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-06-12 16:36" pubdate>
-              2021-06-12
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Java/">Java</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/SSM/">SSM</a>
-            
-          </div>
         
       </div>
     </article>
