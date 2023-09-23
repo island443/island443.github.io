@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1.JDK8的Lambda表达式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java异常,集合">
+<meta property="og:url" content="http://example.com/2021/07/12/java%E9%9B%86%E5%90%88,%E5%BC%82%E5%B8%B8/index.html">
+<meta property="og:site_name" content="island443">
+<meta property="og:description" content="1.JDK8的Lambda表达式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/07/16/NYvucG9malW4bt6.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/16/sJ8hpyRevTwAL3C.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/16/Oc1IUrFfGJdWK4z.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/07/17/3D1rblauJ4NTI2E.png">
+<meta property="og:image" content="https://i.loli.net/2021/07/17/jQPnLE9gaxTh3ZD.png">
+<meta property="article:published_time" content="2021-07-12T11:52:32.000Z">
+<meta property="article:modified_time" content="2023-07-17T10:02:43.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/07/16/NYvucG9malW4bt6.png">
+
+
+<link rel="canonical" href="http://example.com/2021/07/12/java%E9%9B%86%E5%90%88,%E5%BC%82%E5%B8%B8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/07/12/java%E9%9B%86%E5%90%88,%E5%BC%82%E5%B8%B8/","path":"2021/07/12/java集合,异常/","title":"java异常,集合"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>java异常,集合 | island443</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">island443</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JDK8%E7%9A%84Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">1.JDK8的Lambda表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.1匿名内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8"><span class="nav-number">1.0.2.</span> <span class="nav-text">1.2Lambda表达式入门</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.0.3.</span> <span class="nav-text">1.3函数式接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8%E4%B8%8E%E6%9E%84%E9%80%A0%E5%99%A8%E5%BC%95%E7%94%A8"><span class="nav-number">1.0.4.</span> <span class="nav-text">1.4方法引用与构造器引用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E7%B1%BB%E5%90%8D%E5%BC%95%E7%94%A8%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">1.类名引用静态方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%AF%B9%E8%B1%A1%E5%90%8D%E5%BC%95%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.4.2.</span> <span class="nav-text">2.对象名引用方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E6%9E%84%E9%80%A0%E5%99%A8%E5%BC%95%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.4.3.</span> <span class="nav-text">3.构造器引用方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E7%B1%BB%E5%90%8D%E5%BC%95%E7%94%A8%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.4.4.</span> <span class="nav-text">4.类名引用普通方法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%BC%82%E5%B8%B8"><span class="nav-number">2.</span> <span class="nav-text">2.异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E5%B8%B8"><span class="nav-number">2.0.1.</span> <span class="nav-text">2.1什么是异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2%E5%BC%82%E5%B8%B8%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.2异常的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E7%BC%96%E8%AF%91%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">1.编译时异常</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">2.运行时异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3try%E2%80%A6catch%E5%92%8Cfinally"><span class="nav-number">2.0.3.</span> <span class="nav-text">2.3try…catch和finally</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4throws%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">2.0.4.</span> <span class="nav-text">2.4throws关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5throw%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">2.0.5.</span> <span class="nav-text">2.5throw关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="nav-number">2.0.6.</span> <span class="nav-text">2.6自定义异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%9B%86%E5%90%88"><span class="nav-number">3.</span> <span class="nav-text">3.集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1%E9%9B%86%E5%90%88%E6%A6%82%E8%BF%B0"><span class="nav-number">3.0.1.</span> <span class="nav-text">3.1集合概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2Collection%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.0.2.</span> <span class="nav-text">3.2Collection接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3List%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.3List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-List%E6%8E%A5%E5%8F%A3%E7%AE%80%E4%BB%8B"><span class="nav-number">3.0.3.1.</span> <span class="nav-text">1.List接口简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-ArrayList%E9%9B%86%E5%90%88"><span class="nav-number">3.0.3.2.</span> <span class="nav-text">2.ArrayList集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-LinkedList%E9%9B%86%E5%90%88"><span class="nav-number">3.0.3.3.</span> <span class="nav-text">3.LinkedList集合</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4Collection%E9%9B%86%E5%90%88%E9%81%8D%E5%8E%86"><span class="nav-number">3.0.4.</span> <span class="nav-text">3.4Collection集合遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-lterator%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88"><span class="nav-number">3.0.4.1.</span> <span class="nav-text">1.lterator遍历集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-foreach%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88"><span class="nav-number">3.0.4.2.</span> <span class="nav-text">2.foreach遍历集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-JDK8%E7%9A%84forEach%E9%81%8D%E5%8E%86%E9%9B%86%E5%90%88"><span class="nav-number">3.0.4.3.</span> <span class="nav-text">3.JDK8的forEach遍历集合</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5Set%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.0.5.</span> <span class="nav-text">3.5Set接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Set%E6%8E%A5%E5%8F%A3%E7%AE%80%E4%BB%8B"><span class="nav-number">3.0.5.1.</span> <span class="nav-text">1.Set接口简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-TreeSet%E9%9B%86%E5%90%88"><span class="nav-number">3.0.5.2.</span> <span class="nav-text">3.TreeSet集合</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">3.0.5.2.1.</span> <span class="nav-text">自然排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%9A%E5%88%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">3.0.5.2.2.</span> <span class="nav-text">定制排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6Map%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.0.6.</span> <span class="nav-text">3.6Map接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Map%E6%8E%A5%E5%8F%A3%E7%AE%80%E4%BB%8B"><span class="nav-number">3.0.6.1.</span> <span class="nav-text">1.Map接口简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-HashMap%E9%9B%86%E5%90%88"><span class="nav-number">3.0.6.2.</span> <span class="nav-text">2.HashMap集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Map%E9%9B%86%E5%90%88%E9%81%8D%E5%8E%86"><span class="nav-number">3.0.6.3.</span> <span class="nav-text">3.Map集合遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-Iterator%E8%BF%AD%E4%BB%A3%E5%99%A8%E9%81%8D%E5%8E%86Map%E9%9B%86%E5%90%88"><span class="nav-number">3.0.6.3.1.</span> <span class="nav-text">1.Iterator迭代器遍历Map集合</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8forEach%EF%BC%88Consumer-action%EF%BC%89%E9%81%8D%E5%8E%86Map%E9%9B%86%E5%90%88"><span class="nav-number">3.0.6.3.2.</span> <span class="nav-text">使用forEach（Consumer action）遍历Map集合</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-TreeMap%E9%9B%86%E5%90%88"><span class="nav-number">3.0.6.4.</span> <span class="nav-text">4.TreeMap集合</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-Properties%E9%9B%86%E5%90%88"><span class="nav-number">3.0.6.5.</span> <span class="nav-text">5.Properties集合</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7%E6%B3%9B%E5%9E%8B"><span class="nav-number">3.0.7.</span> <span class="nav-text">3.7泛型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-8%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">3.0.8.</span> <span class="nav-text">3.8常用工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Collections%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">3.0.8.1.</span> <span class="nav-text">1.Collections工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%8E%92%E5%BA%8F%E6%93%8D%E4%BD%9C"><span class="nav-number">3.0.8.1.1.</span> <span class="nav-text">添加排序操作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%EF%BC%8C%E6%9B%BF%E6%8D%A2%E6%93%8D%E4%BD%9C"><span class="nav-number">3.0.8.1.2.</span> <span class="nav-text">查找，替换操作</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Arrays%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">3.0.8.2.</span> <span class="nav-text">2.Arrays工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8sort-%E6%96%B9%E6%B3%95%E6%8E%92%E5%BA%8F"><span class="nav-number">3.0.8.2.1.</span> <span class="nav-text">使用sort()方法排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8binarySearch-Object-a-Object-key-%E6%96%B9%E6%B3%95%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0"><span class="nav-number">3.0.8.2.2.</span> <span class="nav-text">使用binarySearch(Object[] a,Object[] key)方法查找元素</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8copyOfRange-int-original-int-from-int-to-%E6%96%B9%E6%B3%95%E6%8B%B7%E8%B4%9D%E5%85%83%E7%B4%A0"><span class="nav-number">3.0.8.2.3.</span> <span class="nav-text">使用copyOfRange(int[] original,int from ,int to)方法拷贝元素</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8fill%EF%BC%88Object-a-Object-val%EF%BC%89%E6%96%B9%E6%B3%95%E6%9B%BF%E6%8D%A2%E5%85%83%E7%B4%A0"><span class="nav-number">3.0.8.2.4.</span> <span class="nav-text">使用fill（Object[] a,Object[] val）方法替换元素</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-9%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C"><span class="nav-number">3.0.9.</span> <span class="nav-text">3.9聚合操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C%E7%AE%80%E4%BB%8B"><span class="nav-number">3.0.9.1.</span> <span class="nav-text">1.聚合操作简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%88%9B%E5%BB%BAStream%E6%B5%81%E5%AF%B9%E8%B1%A1"><span class="nav-number">3.0.9.2.</span> <span class="nav-text">2.创建Stream流对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Stream%E6%B5%81%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">3.0.9.3.</span> <span class="nav-text">3.Stream流的常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E9%81%8D%E5%8E%86"><span class="nav-number">3.0.9.3.1.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4"><span class="nav-number">3.0.9.3.2.</span> <span class="nav-text">过滤</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%98%A0%E5%B0%84"><span class="nav-number">3.0.9.3.3.</span> <span class="nav-text">映射</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%88%AA%E5%8F%96"><span class="nav-number">3.0.9.3.4.</span> <span class="nav-text">截取</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%94%B6%E9%9B%86"><span class="nav-number">3.0.9.3.5.</span> <span class="nav-text">收集</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-Parallel-Stream-%E5%B9%B6%E8%A1%8C%E6%B5%81"><span class="nav-number">3.0.9.4.</span> <span class="nav-text">4.Parallel Stream(并行流)</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt=""
+      src="/image%5Cavatar.jpg">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">非志无以成学</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/island443" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;island443" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2301062786@qq.com" title="E-Mail → mailto:2301062786@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/12/java%E9%9B%86%E5%90%88,%E5%BC%82%E5%B8%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/image%5Cavatar.jpg">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="island443">
+      <meta itemprop="description" content="非志无以成学">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="java异常,集合 | island443">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java异常,集合
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-12 19:52:32" itemprop="dateCreated datePublished" datetime="2021-07-12T19:52:32+08:00">2021-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-17 18:02:43" itemprop="dateModified" datetime="2023-07-17T18:02:43+08:00">2023-07-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="1-JDK8的Lambda表达式"><a href="#1-JDK8的Lambda表达式" class="headerlink" title="1.JDK8的Lambda表达式"></a>1.JDK8的Lambda表达式</h2><span id="more"></span>
+
+<h4 id="1-1匿名内部类"><a href="#1-1匿名内部类" class="headerlink" title="1.1匿名内部类"></a>1.1匿名内部类</h4><p>在Java中调用某个函数时，如果该函数方法的参数是一个接口类型，除了可以传入一个参数接口实现类，还可以使用匿名内部类实现接口来作为该方法的参数。</p>
+<p>创建匿名内部类的基本语法格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new 父接口()&#123;</span><br><span class="line">	//匿名内部类的实现部分</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>下面通过一个案例来学习匿名内部类的定义与使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">interface Animal&#123;</span><br><span class="line">	void shout();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Dog implements Animal&#123;</span><br><span class="line">	public void shout()&#123;</span><br><span class="line">		System.out.println(&quot;小狗汪汪&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class demo1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		String name=&quot;小花&quot;;</span><br><span class="line">		</span><br><span class="line">		//传入一个匿名内部类实现接口</span><br><span class="line">		animalshout(new Animal()&#123;</span><br><span class="line">			//实现shout方法</span><br><span class="line">			public void shout()&#123;</span><br><span class="line">				//从JDK8开始，局部内部类和匿名内部类可以访问非final的局部变量</span><br><span class="line">				System.out.println(name+&quot;喵喵&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		//传入一个接口实现类</span><br><span class="line">		Dog dog=new Dog();</span><br><span class="line">		animalshout(dog);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void animalshout(Animal an)&#123;</span><br><span class="line">		an.shout();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="1-2Lambda表达式入门"><a href="#1-2Lambda表达式入门" class="headerlink" title="1.2Lambda表达式入门"></a>1.2Lambda表达式入门</h4><p>针对匿名内部类语法冗余，JDK8中增加了一个特性Lambda，它使用一个清晰简洁的表达式来表达一个接口，同时Lambda表达式也简化了对集合以及数组的遍历，过滤和提取等操作。</p>
+<p><strong>这种表达式只针对有一个抽象方法的接口实现</strong>，以简洁的表达式形式实现接口功能来作为方法参数。</p>
+<p>一个表达式由三部分组成，分别为 参数列表，”-&gt;”和表达式主题，其语法格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">([数据类型 参数名,数据类型 参数名])-&gt;&#123;表达式主体&#125;</span><br><span class="line"></span><br><span class="line">//在编写Lambda表达式时，可以省略参数的数据类型，后面的表达式主题会自动进行校对匹配，如果有一个参数可以省略括号()</span><br><span class="line">//表达式主体本质就是接口中抽象方法的具体实现，如果只有一条语句可以省略大括号&#123;&#125;，另外表达式主体允许有返回值，当只有一条return语句时，也可以省略return关键字</span><br></pre></td></tr></table></figure>
+
+
+
+<p>学习了Lambda表达式后，对上面的例子进行修改，来讲解Lambda表达式的基本使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">interface Animal&#123;</span><br><span class="line">	void shout();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Lambda1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		String name=&quot;小花&quot;;</span><br><span class="line">		</span><br><span class="line">		AnimalShout(new Animal()&#123;</span><br><span class="line">			public void shout()&#123;</span><br><span class="line">				System.out.println(&quot;匿名内部类:&quot;+name+&quot;喵喵&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		</span><br><span class="line">		AnimalShout(()-&gt;System.out.println(&quot;Lambda输出:&quot;+name+&quot;喵喵&quot;));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void AnimalShout(Animal an)&#123;</span><br><span class="line">		an.shout();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="1-3函数式接口"><a href="#1-3函数式接口" class="headerlink" title="1.3函数式接口"></a>1.3函数式接口</h4><p>Lambda表达式使用时有一个局限，即接口中有且只有一个抽象方法时才能使用Lambda表达式代替匿名内部类，这是因为<strong>Lambda表达式是基于函数式接口实现的</strong>，所谓函数式接口是指有且只有一个抽象方法的接口。</p>
+<p>在JDK8中，专门为函数式接口引入了@FunctionalInterface注解，该注解只是显示地标注了接口是一个函数式接口，并强制编译器进行检查，如果不是函数式接口则编译器报错</p>
+<p>函数式接口的定义与使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">interface Animal&#123;</span><br><span class="line">	void shout();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@FunctionalInterface</span><br><span class="line">interface Calculate&#123;</span><br><span class="line">	int sum(int x,int y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class Lambda2 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;	</span><br><span class="line">		Animalshout(()-&gt;System.out.println(&quot;无参无返回值的函数式接口调用&quot;));</span><br><span class="line">		showSum(5,4,(x,y)-&gt;x+y);	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void Animalshout(Animal an)&#123;</span><br><span class="line">		an.shout();</span><br><span class="line">	&#125;</span><br><span class="line">	public static void showSum(int x,int y,Calculate ca)&#123;</span><br><span class="line">		System.out.println(x+&quot;+&quot;+y+&quot;的和为:&quot;+ca.sum(x, y));</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先定义了两个函数式接口，然后在测试类中分别编写了两个静态方法，并将这两个函数式接口以参数的形式传入，最后在main()方法中分别调用这两个静态方法，并将所需要的函数式接口参数以Lambda表达式形式参入。</p>
+<h4 id="1-4方法引用与构造器引用"><a href="#1-4方法引用与构造器引用" class="headerlink" title="1.4方法引用与构造器引用"></a>1.4方法引用与构造器引用</h4><p>Lambda表达式主体<strong>只有一条语句</strong>时，程序不仅可以省略包含主体的大括号，还可以通过英文双冒号”::”的语法格式来引用方法和构造器。</p>
+<h5 id="1-类名引用静态方法"><a href="#1-类名引用静态方法" class="headerlink" title="1.类名引用静态方法"></a>1.类名引用静态方法</h5><p>类名引用静态方法也就是通过类名对静态方法的引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">interface Calculate&#123;</span><br><span class="line">	int calc(int num);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//定义一个类，并在类中定义一个静态方法</span><br><span class="line">class Math&#123;</span><br><span class="line">	public static int abs(int x)&#123;</span><br><span class="line">		if(x&lt;0)&#123;</span><br><span class="line">			return -x;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			return x;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Lambda3 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		//使用Lambda表达式</span><br><span class="line">		printAbs(-10, num-&gt;Math.abs(num));</span><br><span class="line">		//使用方法引用</span><br><span class="line">		printAbs(-10, Math::abs);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	private static void printAbs(int num,Calculate ca)&#123;</span><br><span class="line">		System.out.println(ca.calc(num));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-对象名引用方法"><a href="#2-对象名引用方法" class="headerlink" title="2.对象名引用方法"></a>2.对象名引用方法</h5><p>对象名引用方法指的是通过实例化对象的名称来对其方法进行的引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">interface Printable&#123;</span><br><span class="line">	void print(String str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class StringUtils&#123;</span><br><span class="line">	public void printUpperCase(String str)&#123;</span><br><span class="line">		System.out.println(str.toUpperCase());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Lambda4 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		StringUtils stringUtils=new StringUtils();</span><br><span class="line">		//使用Lambda表达式</span><br><span class="line">		StringUpeer(&quot;asdaw&quot;,str-&gt;stringUtils.printUpperCase(str));</span><br><span class="line">		//使用方法引用</span><br><span class="line">		StringUpeer(&quot;asdaw&quot;,stringUtils::printUpperCase);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	private static  void StringUpeer(String str,Printable pr)&#123;</span><br><span class="line">		pr.print(str);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3-构造器引用方法"><a href="#3-构造器引用方法" class="headerlink" title="3.构造器引用方法"></a>3.构造器引用方法</h5><p>构造器引用指的是对类自带的构造器的引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">interface PersonBuilder&#123;</span><br><span class="line">	Person builderPerson(String name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Person&#123;</span><br><span class="line">	private String name;	</span><br><span class="line">	public Person(String name)&#123;</span><br><span class="line">		this.name=name;</span><br><span class="line">	&#125;	</span><br><span class="line">	public String getName()&#123;</span><br><span class="line">		return name;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Lambda5 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		//Lambda表达式</span><br><span class="line">		printName(&quot;银桑&quot;,name-&gt;new Person(name));</span><br><span class="line">		//构造器引用</span><br><span class="line">		printName(&quot;银桑&quot;,Person::new);	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void printName(String name,PersonBuilder builder)&#123;</span><br><span class="line">		System.out.println(builder.builderPerson(name).getName());</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-类名引用普通方法"><a href="#4-类名引用普通方法" class="headerlink" title="4.类名引用普通方法"></a>4.类名引用普通方法</h5><p>类名引用普通方法值得是通过一个普通类的类名来对其普通方法进行的引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@FunctionalInterface</span><br><span class="line">interface Printable&#123;</span><br><span class="line">	void print(StringUtils su,String str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class StringUtils&#123;</span><br><span class="line">	public void printUpperCase(String str)&#123;</span><br><span class="line">		System.out.println(str.toUpperCase());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Lambda6 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		//Lambda表达式</span><br><span class="line">		printUpper(new StringUtils(),&quot;sws&quot;,(object,t)-&gt;object.printUpperCase(t));</span><br><span class="line">		//方法引用</span><br><span class="line">		printUpper(new StringUtils(),&quot;sws&quot;, StringUtils::printUpperCase);</span><br><span class="line">	&#125;</span><br><span class="line">	private static void printUpper(StringUtils su,String text,Printable pt)&#123;</span><br><span class="line">		pt.print(su, text);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-异常"><a href="#2-异常" class="headerlink" title="2.异常"></a>2.异常</h2><h4 id="2-1什么是异常"><a href="#2-1什么是异常" class="headerlink" title="2.1什么是异常"></a>2.1什么是异常</h4><p>程序在运行的过程中，会发生非正常的状况，例如，程序运行时磁盘空间不足，网络连接中断，被加载类不存在等。针对这些非正常情况Java语言引入了异常(Exception),以异常类的形式对这些非正常情况进行封装，并通过异常处理机制对程序运行时发生的各种问题进行处理。</p>
+<p>下面通过一个案例来认识什么是异常</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class demo1 &#123;</span><br><span class="line">	//方法实现两数相除</span><br><span class="line">	public static int divide(int x,int y)&#123;</span><br><span class="line">		int result=x/y;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int result=divide(4,0);</span><br><span class="line">		System.out.println(result);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<p><img src="https://i.loli.net/2021/07/16/NYvucG9malW4bt6.png"></p>
+<p>从图可以看出程序发生了异常，在这个异常发生后，程序会立即结束，无法继续向下执行。</p>
+<p>接下来通过一张图来展示Throwable类的继承体系</p>
+<p><img src="https://i.loli.net/2021/07/16/sJ8hpyRevTwAL3C.png" alt="1629177-20191103222635911-691540374.png"></p>
+<p>从图中可以看出，Throwable有两个直接子类Error和Exception,其中Error代表程序中产生的错误，Exception代表程序中产生的异常。</p>
+<ul>
+<li>Error类称为错误类，它表示Java运行时产生的系统内部错误或资源耗尽的错误，是比较严重的，仅靠修改程序本身是不能恢复的，如系统崩溃，虚拟机错误等。</li>
+<li>Exceotion类称为异常类，它表示程序本身可以处理的错误。在Java程序开发中进行的异常处理，都是针对Exception类及其子类的。在Exception类的众多子类中有一个特殊的RuntimeException类，该类及其子类用于表示运行时的异常。除了此类，Exception类下的所有其他的子类都用于表示编译时异常。</li>
+</ul>
+<p>下面是Throwable类中的常用方法</p>
+<ul>
+<li>String	getMessage()	返回此throwable的详细信息字符串</li>
+<li>void       printStackTrace()     将此throwable及其追踪输出至标准错误流</li>
+<li>void       printStackTrace(PrintStream s)    将此throwable及其追踪输出到指定的输出流</li>
+</ul>
+<p>这些方法都用于获取异常信息，由于Error和Exception继承自Throwable类，所以他们都拥有这些方法。</p>
+<h4 id="2-2异常的类型"><a href="#2-2异常的类型" class="headerlink" title="2.2异常的类型"></a>2.2异常的类型</h4><p>在实际开发中，经常会在程序编译时期产生一些异常，而这些异常必须要进行处理，这种异常被称为编译时期异常，也称为checked异常。另外还有一种异常是在程序运行时期产生的，这种异常即使不编写异常处理代码，仍然可以通过编译，因此我们称之为运行时异常，也称unchecked异常。</p>
+<h5 id="1-编译时异常"><a href="#1-编译时异常" class="headerlink" title="1.编译时异常"></a>1.编译时异常</h5><p>处理编译时异常有两种方式，具体如下：</p>
+<ul>
+<li>使用try…catch语句对异常进行捕获处理</li>
+<li>使用throws关键字声明抛出异常，让调用者对其处理</li>
+</ul>
+<h5 id="2-运行时异常"><a href="#2-运行时异常" class="headerlink" title="2.运行时异常"></a>2.运行时异常</h5><p>RuntimeException类及其子类都是运行时异常，运行时异常是在程序运行时由Java虚拟机自动进行捕获处理的。</p>
+<p>常见的运行时异常有多种：</p>
+<ul>
+<li>ArithmeticException    算数异常</li>
+<li>NullPointerException  空指针引用异常</li>
+<li>ClassCastException 类型强制转换异常</li>
+<li>IndexOutOfBoundsException 下标越界异常</li>
+<li>IllegalArgumentException 传递非法参数异常</li>
+</ul>
+<h4 id="2-3try…catch和finally"><a href="#2-3try…catch和finally" class="headerlink" title="2.3try…catch和finally"></a>2.3try…catch和finally</h4><p>当程序发生异常时，会立即终止，无法继续向下执行。为了保证程序能够有效的执行，Java提供了一种对异常进行处理的方式——异常捕获。</p>
+<p>异常捕获使用try…catch语句，具体语法格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">	//可能发生异常的语句</span><br><span class="line">	</span><br><span class="line">&#125;catch(Exception类或其子类e)&#123;</span><br><span class="line">	//对捕获的异常进行相应处理</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码中，try{}代码块中包含的是可能发生异常的语句，catch(){}代码块中编写针对捕获的异常进行处理的代码。当try{}代码块中的程序发生了异常，系统会将这个异常的信息封装成一个异常对象，并将这个对象传递给catch(){}代码块。catch(){}代码块需要一个参数指明它所能够接收的异常类型，这个参数类型必须是Exception类或其子类。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class demo2 &#123;</span><br><span class="line">	</span><br><span class="line">	//方法实现两数相除</span><br><span class="line">	public static int divide(int x,int y)&#123;</span><br><span class="line">		try&#123;</span><br><span class="line">		int result=x/y;</span><br><span class="line">		return result;</span><br><span class="line">		&#125;catch(Exception e)&#123;</span><br><span class="line">			System.out.println(&quot;捕获的异常信息为:&quot;+e.getMessage());</span><br><span class="line">		&#125;finally&#123;</span><br><span class="line">			System.out.println(&quot;执行finally代码块，无论程序是否异常都会执行&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		return -1;    //当程序方式异常直接返回-1</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int result=divide(4,0);</span><br><span class="line">		if(result==-1)&#123;</span><br><span class="line">			System.out.println(&quot;程序发生异常！&quot;);</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			System.out.println(result);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是在try代码块中，发生异常语句后面的代码是不会被执行的。</p>
+<p>在程序设计时，经常会在try..catch后使用finally{}代码块来完成必须做的事情，例如释放系统资源，关闭线程池等。需要注意的是，finally中的代码在一种情况下是不会执行的，那就是try…catch中执行了System.exit（0）语句。System.exit（0）表示退出当前的Java虚拟机，Java虚拟机停止了，任何代码都不能再执行了。</p>
+<h4 id="2-4throws关键字"><a href="#2-4throws关键字" class="headerlink" title="2.4throws关键字"></a>2.4throws关键字</h4><p>有些时候，方法中的代码是否会出现异常，开发者并不明确或者不急于处理，为此，Java允许将这种异常从当前方法中抛出，然后让后续的调用者在使用时在进行处理。该关键字用在会抛出异常的方法名称之后，同时支持一次性抛出多种类型的异常。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class demo3 &#123;</span><br><span class="line">		</span><br><span class="line">	//方法实现两数相除</span><br><span class="line">	public static int divide(int x,int y) throws Exception&#123;</span><br><span class="line">		int result=x/y;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">			int result=divide(4,0);</span><br><span class="line">			System.out.println(result);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行结果：</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.Error: Unresolved compilation problem: </span><br><span class="line">	Unhandled exception type Exception</span><br><span class="line"></span><br><span class="line">	at com.hebau.Exception.demo3.main(demo3.java:14)</span><br></pre></td></tr></table></figure>
+
+<p>在调用divide()方法时，由于该方法声明是抛出了异常，所以调用者在调用divide()方法时就必须进行处理，否则就会发生编译错误。</p>
+<p>下面对代码进行修改，在调用divide()方法时对其进行try…catch捕获处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">	//方法实现两数相除</span><br><span class="line">	public static int divide(int x,int y) throws Exception&#123;</span><br><span class="line">		int result=x/y;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		try&#123;</span><br><span class="line">			int result=divide(4,0);</span><br><span class="line">			System.out.println(result);</span><br><span class="line">		&#125;catch(Exception e)&#123;</span><br><span class="line">			System.out.println(&quot;捕获的信息为:&quot;+e.getMessage());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，当调用者在调用有抛出异常的方法时，除了可以在调用程序中直接进行try…catch异常处理外，也可以使用throws关键字继续抛出异常，这样程序也能编译通过，但是程序发生了异常，终究还是要处理的，如果没有处理程序就会非正常终止。</p>
+<h4 id="2-5throw关键字"><a href="#2-5throw关键字" class="headerlink" title="2.5throw关键字"></a>2.5throw关键字</h4><p>除了可以使用throw关键字抛出异常外，还可以使用throw关键字抛出异常，与throws不同的是，throw用于方法体内，并且抛出的是一个异常类对象，而throws关键字用在方法声明中，用来指定方法可能抛出的多个异常。</p>
+<p>通过throw关键字抛出异常后，还需要使用throws关键字或try…catch对异常进行处理。需要注意的是如果throw抛出的是Error，RuntimeException及其子类对象，则无需使用try…catch对异常进行处理。</p>
+<p>下面通过一个案例来演示throw关键字的使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class demo4 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void printAge(int age)throws Exception&#123;</span><br><span class="line">		if(age&lt;0)&#123;</span><br><span class="line">			throw new Exception(&quot;输入年龄有误，必须是正整数&quot;);</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			System.out.println(&quot;此人年龄为:&quot;+age);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int age=-1;</span><br><span class="line">		try&#123;</span><br><span class="line">			printAge(age);</span><br><span class="line">		&#125;catch(Exception e)&#123;</span><br><span class="line">			System.out.println(&quot;捕获的异常信息为:&quot;+e.getMessage());</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-6自定义异常"><a href="#2-6自定义异常" class="headerlink" title="2.6自定义异常"></a>2.6自定义异常</h4><p>Java中定义了大量的异常类，虽然这些类可以描述编程时出现的大部分异常情况，但是在程序开发中有时需要描述程序中特有的异常情况，例如在设计divide()方法时不允许被除数为负数。为了解决这样的问题，Java允许用户自定义异常，但自定义的异常类必须继承自Exception或其子类。</p>
+<p>下面通过一个案例来学习自定义异常的创建：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class DivideByMinusException extends Exception &#123;</span><br><span class="line"></span><br><span class="line">	public DivideByMinusException()&#123;</span><br><span class="line">		super();			//调用Exception无参的构造方法</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public DivideByMinusException(String message)&#123;</span><br><span class="line">		super(message);				//调用Exception有参的构造方法</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在实际开发中，如果没有特殊的要求，自定义的异常类只需继承Exception类，在构造方法中使用super（）语句调用Exception的构造方法即可。</p>
+<p>下面用自定义的异常类对上面例子进行改写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class demo4 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void printAge(int age)throws DivideByMinusException&#123;</span><br><span class="line">		if(age&lt;0)&#123;</span><br><span class="line">			throw new DivideByMinusException(&quot;输入年龄有误，必须是正整数&quot;);</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			System.out.println(&quot;此人年龄为:&quot;+age);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int age=-1;</span><br><span class="line">		try&#123;</span><br><span class="line">			printAge(age);</span><br><span class="line">		&#125;catch(DivideByMinusException e)&#123;</span><br><span class="line">			System.out.println(&quot;捕获的异常信息为:&quot;+e.getMessage());</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="3-集合"><a href="#3-集合" class="headerlink" title="3.集合"></a>3.集合</h2><h4 id="3-1集合概述"><a href="#3-1集合概述" class="headerlink" title="3.1集合概述"></a>3.1集合概述</h4><p>Java中的集合就像一个容器，专门用来存储Java对象（实际上是对象的引用，但习惯上称为对象），这些对象是任意的数据类型，并且长度可变。其中这些集合都位于java.util包中。</p>
+<p>集合按照其存储结构可以分为两大类：单列集合Collection和双列集合Map，这两种集合的特点具体如下：</p>
+<ul>
+<li>Collection：单列集合的根接口，用于存储一系列符合某种规则的元素，Collection集合有两个重要的子接口，分别是List和Set。其中List集合的特点是元素有序，可重复，主要实现类有ArrayList和LinkedList。Set集合的特点是元素无序，并且不可重复，Set接口的主要实现类有HashSet和TreeSet。</li>
+<li>Map：双列集合的根接口，用于存储具有键（key），值（value）映射关系的元素。Map接口主要的实现类有HashMap和TreeMap</li>
+</ul>
+<p><img src="https://i.loli.net/2021/07/16/Oc1IUrFfGJdWK4z.jpg" alt="集合.jpg"></p>
+<p>上图列出了Java开发中常用的一些集合类</p>
+<h4 id="3-2Collection接口"><a href="#3-2Collection接口" class="headerlink" title="3.2Collection接口"></a>3.2Collection接口</h4><p>Collection 是所有单列集合的根接口，因此再Collection中定义了单列集合（List和Set）的一些通用方法，这些方法可用于操作所有的单列集合：</p>
+<ul>
+<li>boolean add(Object e) &#x2F;&#x2F;向集合中添加1个元素</li>
+<li>boolean addAll(Collection c) &#x2F;&#x2F; 向集合中添加多个元素</li>
+<li>void clear() &#x2F;&#x2F; 清空集合</li>
+<li>Iterator iterator() &#x2F;&#x2F; 获取集合的迭代器对象</li>
+<li>boolean remove(Object o) &#x2F;&#x2F;删除集合中的某个元素</li>
+<li>int size()  &#x2F;&#x2F; 获取集合中元素的个数</li>
+<li>Stream&lt; E&gt;stream() &#x2F;&#x2F;将集合源转换为有序元素的流对象</li>
+</ul>
+<p>其中stream()方法是JDK8增加的，用于对集合元素进行聚合操作</p>
+<h4 id="3-3List接口"><a href="#3-3List接口" class="headerlink" title="3.3List接口"></a>3.3List接口</h4><h5 id="1-List接口简介"><a href="#1-List接口简介" class="headerlink" title="1.List接口简介"></a>1.List接口简介</h5><p>List接口继承自Collection接口，习惯性的将实现了List接口的对象称为List集合。在List集合中允许出现重复的元素，所有的元素是以一种线性方式进行存储的，在程序中可以通过索引（类似于数组角标）来访问集合中的指定元素，另外List集合是有序的，即元素存入顺序和取出顺序一致。</p>
+<h5 id="2-ArrayList集合"><a href="#2-ArrayList集合" class="headerlink" title="2.ArrayList集合"></a>2.ArrayList集合</h5><p>ArryList是List接口的一个实现类，它是程序中最常见的一种集合。在ArrayList内部封装了一个长度可变的数组对象，当存入的元素超过数组长度时，ArrayList会在内存中分配一个更大的数组来存储这些元素，因此可以将ArrayList集合看做一个长度可变的数组。</p>
+<p>ArrayList因为会产生新的数组所以不适合做大量的增删改操作，但ArrayList集合在遍历和查找元素时效率比较高。</p>
+<p>下面通过是一个ArrayList集合的存取案例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class demo1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		ArrayList list=new ArrayList();</span><br><span class="line">		</span><br><span class="line">		list.add(&quot;stu1&quot;);</span><br><span class="line">		list.add(&quot;stu2&quot;);</span><br><span class="line">		list.add(&quot;stu3&quot;);</span><br><span class="line">		list.add(&quot;stu4&quot;);</span><br><span class="line">		</span><br><span class="line">		System.out.println(&quot;集合的长度是:&quot;+list.size());</span><br><span class="line">		System.out.println(&quot;第二个元素是:&quot;+list.get(1));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//运行结果</span><br><span class="line">集合的长度是:4  </span><br><span class="line">第二个元素是:stu2</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3-LinkedList集合"><a href="#3-LinkedList集合" class="headerlink" title="3.LinkedList集合"></a>3.LinkedList集合</h5><p>ArrayList增删改效率极低，为了克服这种局限性，可使用List接口的另一个实现类LinkedList，该集合内部包含有两个Node类型的first和last属性维护一个双向循环列表，链表中的每一个元素都使用引用的方式来记住它的前一个元素和后一个元素，从而可以将所有的元素彼此连接起来。所以LinkedList集合对元素的增删改操作表现出很高的效率。</p>
+<p>通过一个案例学习LinkedList集合的常用方法的使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class demo2 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		LinkedList link=new LinkedList();</span><br><span class="line">		</span><br><span class="line">		//追加元素</span><br><span class="line">		link.add(&quot;stu1&quot;);</span><br><span class="line">		link.add(&quot;stu1&quot;);</span><br><span class="line">		System.out.println(link);</span><br><span class="line">		</span><br><span class="line">		link.offer(&quot;offer&quot;);  //向集合尾部追加元素</span><br><span class="line">		link.push(&quot;push&quot;);     //向集合头部添加元素</span><br><span class="line">		System.out.println(link);</span><br><span class="line">		</span><br><span class="line">		//获取元素</span><br><span class="line">		Object object=link.peek();     //取出集合的第一个元素</span><br><span class="line">		System.out.println(object);</span><br><span class="line">		</span><br><span class="line">		//删除元素</span><br><span class="line">		link.removeFirst();		//删除集合第一个元素</span><br><span class="line">		link.pollLast();		//删除集合最后一个元素</span><br><span class="line">		System.out.println(link);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//运行结果</span><br><span class="line">[stu1, stu1]</span><br><span class="line">[push, stu1, stu1, offer]</span><br><span class="line">push</span><br><span class="line">[stu1, stu1]</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-4Collection集合遍历"><a href="#3-4Collection集合遍历" class="headerlink" title="3.4Collection集合遍历"></a>3.4Collection集合遍历</h4><p>在程序开发中，针对Collection单列集合元素除了基本的增删改查操作外，还经常需要对集合元素进行遍历，下面以List集合为例，来对Collection集合的几种遍历方法进行讲解。</p>
+<h5 id="1-lterator遍历集合"><a href="#1-lterator遍历集合" class="headerlink" title="1.lterator遍历集合"></a>1.lterator遍历集合</h5><p>lterator接口是java集合框架中的一员，但它与Collection，Map接口有所不同，Collection接口与Map接口主要用于存储元素，而lterator主要用于迭代访问（即遍历）Collection中的元素，因此Iterator对象也被称为迭代器。</p>
+<p>接下来通过一个案例来学习如何使用Iterator来迭代集合中的元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class demo3 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		 ArrayList list=new ArrayList();</span><br><span class="line">		 list.add(&quot;data1&quot;);</span><br><span class="line">		 list.add(&quot;data2&quot;);</span><br><span class="line">		 list.add(&quot;data3&quot;);</span><br><span class="line">		 //获取Iterator对象</span><br><span class="line">		 Iterator iterator=list.iterator();</span><br><span class="line">		 //判断集合是否存在下一个元素</span><br><span class="line">		 while(iterator.hasNext())&#123;</span><br><span class="line">			 Object obj=iterator.next();	//取出ArrayList集合中的元素</span><br><span class="line">			 System.out.println(obj);</span><br><span class="line">		 &#125;		 </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先，<strong>调用ArrayList集合的iterator()方法获得迭代器对象</strong>，然后使用hasNext()方法判断集合中是否存在下一个元素，如果存在，则调用next()方法将元素取出，否则说明已到达了集合末尾，停止遍历元素。 注意：调用next()方法获取元素时，必须保证要获取的元素存在，否则会抛出异常。</p>
+<p>Iterator迭代器对象在遍历集合时，内部采用指针的方式来跟踪集合中的元素。调用Iterator的next()方法之前，迭代器的指针位于第一个元素之前，不指向任何元素。然后每次调用一次迭代器next()方法后，指针向后移动一位并将该位置元素返回，直到hasnext()方法返回false，表示到达了集合的末尾，终止对元素的遍历。</p>
+<p><strong>注意：在使用Iterator迭代器对集合中的元素进行迭代时，如果调用了集合对象的remove()方法去删除元素，会出现异常。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class demo6 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">	ArrayList list=new ArrayList();</span><br><span class="line">		</span><br><span class="line">		list.add(&quot;Jack&quot;);</span><br><span class="line">		list.add(&quot;Annie&quot;);</span><br><span class="line">		list.add(&quot;Rose&quot;);</span><br><span class="line">		list.add(&quot;Tom&quot;);</span><br><span class="line">		</span><br><span class="line">		Iterator it=list.iterator();   //获得iterator对象</span><br><span class="line">		while(it.hasNext())&#123;</span><br><span class="line">			Object obj=it.next();</span><br><span class="line">			if(&quot;Annie&quot;.equals(obj))&#123;		</span><br><span class="line">				list.remove(obj);		//注意，调用集合对象的remove方法！！！</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(list);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行出现以下异常：</p>
+<p>![_0__SIP9K_M9GN&#96;U_XST3S7.png](<a target="_blank" rel="noopener" href="https://i.loli.net/2021/07/16/k7f8ArU1mSawz9M.png">https://i.loli.net/2021/07/16/k7f8ArU1mSawz9M.png</a>)</p>
+<p>这个异常是迭代器对象抛出的，出现异常的原因是集合中删除了元素导致迭代器预期迭代次数发生改变，导致迭代器结果不准确</p>
+<p>有两种解决解决办法：</p>
+<p>第一种：业务逻辑上讲删除了元素后就break跳出循环不在迭代</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(&quot;Annie&quot;.equals(obj))&#123;		</span><br><span class="line">	list.remove(obj);</span><br><span class="line">	break；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二种：用迭代器本身的删除方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(&quot;Annie&quot;.equals(obj))&#123;		</span><br><span class="line">		it.remove(obj);</span><br><span class="line">		break；</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h5 id="2-foreach遍历集合"><a href="#2-foreach遍历集合" class="headerlink" title="2.foreach遍历集合"></a>2.foreach遍历集合</h5><p>foreach循环是一种更加简洁的for循环，也称增强for循环，foreach循环用于遍历数组或集合中的元素，其具体语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(容器中的元素类型 临时变量 :容器变量)&#123;</span><br><span class="line">	//执行语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>与for循环相比，foreach循环不需要获得容器的长度，也不需要根据索引访问容器的元素，但它会自动遍历容器中的每个元素。</p>
+<p>下面是一个简单应用案例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class demo4 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		 ArrayList list=new ArrayList();</span><br><span class="line">		 list.add(&quot;data1&quot;);</span><br><span class="line">		 list.add(&quot;data2&quot;);</span><br><span class="line">		 list.add(&quot;data3&quot;);</span><br><span class="line">		 //使用foreach循环遍历集合		 </span><br><span class="line">		 for(Object obj:list)&#123;</span><br><span class="line">			 System.out.println(obj);			 </span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>foreach循环没有循环条件，没有迭代语句，所有这些工作都交给JVM去执行了</p>
+<p><strong>注意：使用foreach循环遍历集合数组时，只能访问集合中的元素，不能对其中的元素进行修改。</strong></p>
+<p>以下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class demo5 &#123;</span><br><span class="line">	static String[] strs=&#123;&quot;aaa&quot;,&quot;bbb&quot;,&quot;ccc&quot;&#125;;</span><br><span class="line">		</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		//1.foreach循环遍历数组</span><br><span class="line">		for(String str:strs)&#123;</span><br><span class="line">			str=&quot;ddd&quot;;		</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		System.out.println(strs[0]+strs[1]+strs[2]);</span><br><span class="line">		</span><br><span class="line">		//2.for循环遍历数组</span><br><span class="line">		for(int i=0;i&lt;strs.length;i++)&#123;</span><br><span class="line">			strs[i]=&quot;ddd&quot;;</span><br><span class="line">		&#125;		</span><br><span class="line">		System.out.println(strs[0]+strs[1]+strs[2]);</span><br><span class="line">        </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行结果：</span><br><span class="line">aaabbbccc</span><br><span class="line">ddddddddd</span><br><span class="line">可知foreach循环不能对不能对集合元素进行更改！</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3-JDK8的forEach遍历集合"><a href="#3-JDK8的forEach遍历集合" class="headerlink" title="3.JDK8的forEach遍历集合"></a>3.JDK8的forEach遍历集合</h5><p>在JDK8中，根据Lambda表达式特性还增加了一个forEach（Consumer action）方法来遍历集合，该方法所需要的参数是一个函数式接口。</p>
+<p>下面通过一个案例来演示如何使用forEach（Consumer action）遍历集合对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class demo7 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		 ArrayList list=new ArrayList();</span><br><span class="line">		 list.add(&quot;data1&quot;);</span><br><span class="line">		 list.add(&quot;data2&quot;);</span><br><span class="line">		 list.add(&quot;data3&quot;);</span><br><span class="line">		 System.out.println(list);</span><br><span class="line">		 //使用JDK8新增的forEach（Consumer action）方法遍历集合</span><br><span class="line">		 list.forEach(obj-&gt;System.out.println(&quot;迭代集合元素:&quot;+obj));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>JDK8除了集合类型对象增加了一个forEach（Consumer action）方法，iterator迭代器对象也增加了一个forEachRemaining（Consumer action）方法来进行遍历：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class demo7 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		 ArrayList list=new ArrayList();</span><br><span class="line">		 list.add(&quot;data1&quot;);</span><br><span class="line">		 list.add(&quot;data2&quot;);</span><br><span class="line">		 list.add(&quot;data3&quot;);</span><br><span class="line">		 System.out.println(list);</span><br><span class="line">		 //使用JDK8新增的forEach（Consumer action）方法遍历集合</span><br><span class="line">		 Iterator it=list.iterator();</span><br><span class="line">		 it.forEachRemaining(obj-&gt;System.out.println(&quot;迭代集合元素:&quot;+obj));</span><br><span class="line">		 </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="3-5Set接口"><a href="#3-5Set接口" class="headerlink" title="3.5Set接口"></a>3.5Set接口</h4><h5 id="1-Set接口简介"><a href="#1-Set接口简介" class="headerlink" title="1.Set接口简介"></a>1.Set接口简介</h5><p>Set接口继承自Collection接口，Set接口中的元素无序，并且<strong>都会以某种规则保证存入的数据不出现重复</strong>。</p>
+<p>Set接口主要有两个实现类，分别是HashSet和TreeSet。其中HashSet是根据对象的哈希值来确定元素在集合中的存储的位置，因此有良好的存取和查找功能。TreeSet则是以二叉树的方式来存储元素，它可以实现对集合中的元素的排序。</p>
+<p><strong>2.HashSet集合</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class SetDemo1 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		HashSet set=new HashSet();</span><br><span class="line">		set.add(&quot;jack&quot;);</span><br><span class="line">		set.add(&quot;eve&quot;);</span><br><span class="line">		set.add(&quot;rose&quot;);</span><br><span class="line">		set.add(&quot;rose&quot;);</span><br><span class="line">		//遍历输出Set集合中的元素</span><br><span class="line">		set.forEach(obj-&gt;System.out.println(obj));</span><br><span class="line">	&#125;</span><br><span class="line">			</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行结果:</span><br><span class="line">eve</span><br><span class="line">rose</span><br><span class="line">jack</span><br></pre></td></tr></table></figure>
+
+
+
+<p>HashSet集合之所以能够不出现重复的元素是因为它在存入元素时做了很多工作，当调用HashSet集合的add()方法存入元素时，首先调用当前存入元素的hashCode()方法获得对象的哈希值，然后根据对象的哈希值计算出一个存储位置；如果该位置没有元素，则直接存入；如果有元素存在，则会调用equels()方法让当前存入元素，以此和该位置上的元素进行比较，如果返回false就将该元素存入集合，返回true就表明有相同元素，把该元素舍弃。</p>
+<p>为了保证HashSet正常运行，<strong>要求存入对象时，需要重写Object类的hashCode()和equals()方法</strong>，因为不重写的话，即使是相同的对象，但引用的对象地址不同，所以HashSet会认为是两个不同的对象。String类以默认重写了hashCode()和equals()方法。</p>
+<p>重写的格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">public class SetDemo2 &#123;</span><br><span class="line"></span><br><span class="line">	class Student&#123;</span><br><span class="line">		private String id;</span><br><span class="line">		private String name;</span><br><span class="line">		</span><br><span class="line">		public Student(String id, String name) &#123;</span><br><span class="line">			super();</span><br><span class="line">			this.id = id;</span><br><span class="line">			this.name = name;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	</span><br><span class="line">		//重写toString()方法</span><br><span class="line">		public String toString()&#123;</span><br><span class="line">			return id+&quot;:&quot;+name;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		//重写hashCode()方法</span><br><span class="line">		public int hashCode()&#123;</span><br><span class="line">			return id.hashCode();		//返回id属性的hash值</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		//重写equals()方法</span><br><span class="line">		public boolean equals(Object obj)&#123;</span><br><span class="line">			if(this==obj)&#123;</span><br><span class="line">				return true;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			if(!(obj instanceof Student))&#123;	//判断对象是为Student类型</span><br><span class="line">				return false;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			Student stu=(Student)obj;</span><br><span class="line">			boolean b=this.id.equals(stu.id);</span><br><span class="line">			return b;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3-TreeSet集合"><a href="#3-TreeSet集合" class="headerlink" title="3.TreeSet集合"></a>3.TreeSet集合</h5><p>TreeSet是Set接口另一个实现类，它内部采用平衡二叉树来存储元素，这样的结构可以保证TreeSet集合中没有重复元素，并且可以对元素进行排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public class SetDemo3 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TreeSet ts=new TreeSet();</span><br><span class="line">		ts.add(3);</span><br><span class="line">		ts.add(9);</span><br><span class="line">		ts.add(1);</span><br><span class="line">		ts.add(2);</span><br><span class="line">		System.out.println(ts);</span><br><span class="line">		</span><br><span class="line">		//获取首尾元素</span><br><span class="line">		System.out.println(ts.first());</span><br><span class="line">		System.out.println(ts.last());</span><br><span class="line">		</span><br><span class="line">		//比较并获取元素</span><br><span class="line">		System.out.println(&quot;集合中小于或等于9的最大的一个元素为:&quot;+ts.floor(9));</span><br><span class="line">		System.out.println(&quot;集合中大于10的最小的一个元素为:&quot;+ts.higher(10));</span><br><span class="line">		System.out.println(&quot;集合中大于100的最小的一个元素为:&quot;+ts.higher(100));</span><br><span class="line">		</span><br><span class="line">		//删除元素</span><br><span class="line">		Object first=ts.pollFirst();	</span><br><span class="line">		System.out.println(first);</span><br><span class="line">		System.out.println(ts);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行结果</span><br><span class="line">[1, 2, 3, 9]</span><br><span class="line">1</span><br><span class="line">9</span><br><span class="line">集合中小于或等于9的最大的一个元素为:9</span><br><span class="line">集合中大于10的最小的一个元素为:null</span><br><span class="line">集合中大于100的最小的一个元素为:null</span><br><span class="line">1</span><br><span class="line">[2, 3, 9]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>向TreeSet集合添加元素时，不论添加顺序如何，这些元素都能按照一定的顺序进行排列，其原因是每次向TreeSet集合存入一个元素时，就会与其他元素进行比较，最后将它插入到有序的对象序列中。</p>
+<p>集合中元素进行比较时都会调用compareTo()方法，该方法是Comparable接口定义的，因此想要对集合中的元素进行排序，就必须实现Comparable接口，java中大部分类都实现了Comparable接口，如Integer，double，String等。</p>
+<p>但如果是自定义的数据类型，如Student类型数据，这些没有实现Comparable接口，因此就无法直接在TreeSet集合中进行排序操作，为了解决这个问题，java提供了两种排序规则：自然排序和定制排序</p>
+<h6 id="自然排序"><a href="#自然排序" class="headerlink" title="自然排序"></a>自然排序</h6><p>自然排序要求向TreeSet集合中存储的元素所在类必须实现Comparable接口，并重写CompareTo()方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Teacher implements Comparable&#123;</span><br><span class="line">	String name;</span><br><span class="line">	int age;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	public Teacher(String name, int age) &#123;</span><br><span class="line">		this.name = name;</span><br><span class="line">		this.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	public String toString() &#123;</span><br><span class="line">		return &quot;Teacher [name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//重写Comparable的compareTo()方法</span><br><span class="line">	public int compareTo(Object obj)&#123;</span><br><span class="line">		Teacher s=(Teacher)obj;</span><br><span class="line">		//定义比较方法，先比较age在比较name</span><br><span class="line">		if(this.age-s.age&gt;0)&#123;</span><br><span class="line">			return 1;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		if(this.age-s.age==0)&#123;</span><br><span class="line">			return this.name.compareTo(s.name);</span><br><span class="line">		&#125;</span><br><span class="line">		return -1;				</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">public class SetDemo4 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		TreeSet ts=new TreeSet();</span><br><span class="line">		ts.add(new Teacher(&quot;rose&quot;,18));</span><br><span class="line">		ts.add(new Teacher(&quot;rose&quot;,18));</span><br><span class="line">		ts.add(new Teacher(&quot;tom&quot;,19));</span><br><span class="line">		ts.add(new Teacher(&quot;rose&quot;,18));</span><br><span class="line">		System.out.println(ts);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="定制排序"><a href="#定制排序" class="headerlink" title="定制排序"></a>定制排序</h6><p>有时，用户自定义的类型数据所在的类没有实现Comparable接口或者实现了Comparable接口的类而不想按照定义的CompareTo()方法进行排序，这时，可以通过在创建TreeSet集合时就自定义一个比较器来对元素进行定制排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class MyComparator implements Comparator&#123;</span><br><span class="line">	public int compare(Object obj1,Object obj2)&#123;	//定制排序方式</span><br><span class="line">		String s1=(String) obj1;</span><br><span class="line">		String s2=(String) obj2;</span><br><span class="line">		int temp=s1.length()-s2.length();			</span><br><span class="line">		return temp;			</span><br><span class="line">	&#125;			</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class SetDemo5 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		//1.创建集合时，传入Comparator接口实现定制排序规则</span><br><span class="line">		TreeSet ts=new TreeSet(new MyComparator());</span><br><span class="line">		ts.add(&quot;jack&quot;);</span><br><span class="line">		ts.add(&quot;jdaw&quot;);</span><br><span class="line">		ts.add(&quot;wea&quot;);</span><br><span class="line">		System.out.println(ts);</span><br><span class="line">		</span><br><span class="line">		//2.创建集合时，使用Lambda表达式定制排序规则</span><br><span class="line">		TreeSet ts2=new TreeSet((obj1,obj2)-&gt;&#123;</span><br><span class="line">			String s1=(String) obj1;</span><br><span class="line">			String s2=(String) obj2;</span><br><span class="line">			return s1.length()-s2.length();</span><br><span class="line">		&#125;);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-6Map接口"><a href="#3-6Map接口" class="headerlink" title="3.6Map接口"></a>3.6Map接口</h4><h5 id="1-Map接口简介"><a href="#1-Map接口简介" class="headerlink" title="1.Map接口简介"></a>1.Map接口简介</h5><p>Map接口是一个双列集合，它的每个元素都包含一个键对象Key和值对象Value，键和值之间存在一种对应关系，称为映射。</p>
+<p>常用方法：</p>
+<ul>
+<li>void put(K key, V value); 向集合中添加元素。</li>
+<li>void get(Object key); 通过指定key获取value。</li>
+<li>int size(); 获取集合中元素的个数。</li>
+<li>void clear(); 清空集合，元素个数清0。</li>
+<li>boolean isEmpty(); 判断集合元素个数是否为0。</li>
+<li>void remove(Object key); 删除指定key的键值对。</li>
+</ul>
+<h5 id="2-HashMap集合"><a href="#2-HashMap集合" class="headerlink" title="2.HashMap集合"></a>2.HashMap集合</h5><p>HashMap集合是Map接口的一个实现类，它的键不能重复，且集合中元素是无序的。</p>
+<p>HashMap底层是由哈希表结构组成的，其实就是“数组+链表”的组合体，数组是HashMap的主体结构，链表则是为了解决哈希表冲突而存在的分支结构。因为这种存储结构，HashMap对增删改查效率都比较高。</p>
+<p>HashMap的总体结构如下：</p>
+<p><img src="https://i.loli.net/2021/07/17/3D1rblauJ4NTI2E.png" alt="20181102221702492.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">public class mapDemo1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Map map=new HashMap();</span><br><span class="line"></span><br><span class="line">		map.put(&quot;1&quot;,&quot;da&quot;);</span><br><span class="line">		map.put(&quot;2&quot;,&quot;wd&quot;);</span><br><span class="line">		map.put(&quot;3&quot;,&quot;fe&quot;);</span><br><span class="line">		map.put(&quot;4&quot;,&quot;fr&quot;);</span><br><span class="line">		map.put(&quot;1&quot;,&quot;dw&quot;);</span><br><span class="line">		System.out.println(map);</span><br><span class="line">		//查看键对象是否存在</span><br><span class="line">		System.out.println(map.containsKey(&quot;1&quot;));</span><br><span class="line">		</span><br><span class="line">		//获取指定键对象的值</span><br><span class="line">		System.out.println(map.get(&quot;1&quot;));</span><br><span class="line">		</span><br><span class="line">		//获取集合中的键对象和值对象集合</span><br><span class="line">		System.out.println(map.keySet());</span><br><span class="line">		System.out.println(map.values());</span><br><span class="line">		</span><br><span class="line">		//替换指定键对象映射的值</span><br><span class="line">		map.replace(&quot;1&quot;, &quot;Jack&quot;);</span><br><span class="line">		System.out.println(map);</span><br><span class="line"></span><br><span class="line">		//删除指定键值对</span><br><span class="line">		map.remove(&quot;1&quot;);</span><br><span class="line">		System.out.println(map);		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>HashMap的put方法执行过程可以通过下图来理解：</p>
+<p><img src="https://i.loli.net/2021/07/17/jQPnLE9gaxTh3ZD.png" alt="2019072810592539.png"></p>
+<p>1.判断键值对数组table[i]是否为空或为null，否则执行resize()进行扩容；</p>
+<p>2.根据键值key计算hash值得到插入的数组索引i，如果table[i]&#x3D;&#x3D;null，直接新建节点添加，转向6，如果table[i]不为空，转向3；</p>
+<p>3.判断table[i]的首个元素是否和key一样，如果相同直接覆盖value，否则转向4，这里的相同指的是hashCode以及equals；</p>
+<p>4.判断table[i] 是否为treeNode，即table[i] 是否是红黑树，如果是红黑树，则直接在树中插入键值对，否则转向5；</p>
+<p>5.遍历table[i]，判断链表长度是否大于8，大于8的话把链表转换为红黑树，在红黑树中执行插入操作，否则进行链表的插入操作；遍历过程中若发现key已经存在直接覆盖value即可；</p>
+<p>6.插入成功后，判断实际存在的键值对数量size是否超多了最大容量threshold，如果超过，进行扩容。</p>
+<h5 id="3-Map集合遍历"><a href="#3-Map集合遍历" class="headerlink" title="3.Map集合遍历"></a>3.Map集合遍历</h5><p>主要有两种方式：第一种是使用Iterator迭代器遍历集合，第二种是使用forEach（Consumer action）方法遍历集合</p>
+<h6 id="1-Iterator迭代器遍历Map集合"><a href="#1-Iterator迭代器遍历Map集合" class="headerlink" title="1.Iterator迭代器遍历Map集合"></a>1.Iterator迭代器遍历Map集合</h6><p>使用Iterator迭代器遍历Map集合，需要先将Map集合转换为Iterator接口对象，然后进行遍历，由于Map集合中的元素是键值对的形式组成，所以使用Iterator接口遍历Map集合时，会有两种将Map集合转换为Iterator接口对象在进行遍历的方法，即KeySet()和entrySet()方法。</p>
+<p>KeySet()方法，将Map集合中的所有键对象转换为Set单列集合</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class mapdemo2 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Map map=new HashMap();</span><br><span class="line">		map.put(&quot;1&quot;,&quot;da&quot;);</span><br><span class="line">		map.put(&quot;2&quot;,&quot;wd&quot;);</span><br><span class="line">		map.put(&quot;3&quot;,&quot;fe&quot;);</span><br><span class="line">		System.out.println(map);</span><br><span class="line"></span><br><span class="line">		Set keySet=map.keySet();</span><br><span class="line">		Iterator it=keySet.iterator();</span><br><span class="line">		while(it.hasNext())&#123;</span><br><span class="line">			Object key=it.next();</span><br><span class="line">			Object value=map.get(key);</span><br><span class="line">			System.out.println(key+&quot;+&quot;+value);					</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>entrySet()方法，该方法将原有的Map集合中的键值对作为一个整体返回Set集合</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class mapdemo2 &#123;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Map map=new HashMap();</span><br><span class="line">		map.put(&quot;1&quot;,&quot;da&quot;);</span><br><span class="line">		map.put(&quot;2&quot;,&quot;wd&quot;);</span><br><span class="line">		map.put(&quot;3&quot;,&quot;fe&quot;);</span><br><span class="line">		System.out.println(map);</span><br><span class="line"></span><br><span class="line">		Set entrySet=map.entrySet();</span><br><span class="line">		Iterator it=entrySet.iterator();</span><br><span class="line">		while(it.hasNext())&#123;</span><br><span class="line">			Map.Entry entry=(Map.Entry)(it.next());</span><br><span class="line">			Object key=entry.getKey();</span><br><span class="line">			Object value=entry.getValue();</span><br><span class="line">			System.out.println(key+&quot;+&quot;+value);					</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="使用forEach（Consumer-action）遍历Map集合"><a href="#使用forEach（Consumer-action）遍历Map集合" class="headerlink" title="使用forEach（Consumer action）遍历Map集合"></a>使用forEach（Consumer action）遍历Map集合</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class mapdemo3 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Map map=new HashMap();</span><br><span class="line">		map.put(&quot;1&quot;,&quot;da&quot;);</span><br><span class="line">		map.put(&quot;2&quot;,&quot;wd&quot;);</span><br><span class="line">		map.put(&quot;3&quot;,&quot;fe&quot;);</span><br><span class="line">		System.out.println(map);</span><br><span class="line">		</span><br><span class="line">		map.forEach((key,value)-&gt;System.out.println(key+&quot;+&quot;+value));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在Map集合中，除了以上两种方法外，还提供了一个values（）方法，通过这个方法可以直接获取Map中存储所有值得Collection集合：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class mapdemo4 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Map map=new HashMap();</span><br><span class="line">		map.put(&quot;1&quot;,&quot;da&quot;);</span><br><span class="line">		map.put(&quot;2&quot;,&quot;wd&quot;);</span><br><span class="line">		map.put(&quot;3&quot;,&quot;fe&quot;);</span><br><span class="line">		System.out.println(map);</span><br><span class="line">		Collection values=map.values();</span><br><span class="line">		values.forEach(v-&gt;System.out.println(v));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="4-TreeMap集合"><a href="#4-TreeMap集合" class="headerlink" title="4.TreeMap集合"></a>4.TreeMap集合</h5><p>Map接口还有一个常用的实现类TreeMap,内部使用二叉树的原理来保证键的唯一性，这与TreeSet原理一样，因此TreeMap中所有键是按照某种顺序排列的。</p>
+<p>同TreeSet集合一样，在使用TreeMap集合时，也可以通过自定义比较器的方式对所有的键进行定制排序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class MyComparator implements Comparator&#123;</span><br><span class="line">	public int compare(Object obj1,Object obj2)&#123;	//定制排序方式</span><br><span class="line">		String key1=(String) obj1;</span><br><span class="line">		String key2=(String) obj2;	</span><br><span class="line">		return key2.compareTo(key1);			</span><br><span class="line">	&#125;			</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class mapdemo5 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Map map=new TreeMap(new MyComparator());</span><br><span class="line">		map.put(&quot;1&quot;,&quot;da&quot;);</span><br><span class="line">		map.put(&quot;2&quot;,&quot;wd&quot;);</span><br><span class="line">		map.put(&quot;3&quot;,&quot;fe&quot;);</span><br><span class="line">		System.out.println(map);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="5-Properties集合"><a href="#5-Properties集合" class="headerlink" title="5.Properties集合"></a>5.Properties集合</h5><p>Map接口还有一个实现类Hashtable，它和HashMap十分相似，其中一个主要区别在于Hashtable是线程安全的，另外在使用方面Hashtable的效率也不及HashMap，所以目前基本被HashMap类所取代，但Hashtable类有一个子类Properties在实际开发中非常重要。Properties主要用来存储字符串类型的键和值，在实际开发中，经常使用Properties集合类来存取应用的配置项。</p>
+<p>新建test.properties</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Backgroup-color=red</span><br><span class="line">Font-size=14px</span><br><span class="line">language=chinese</span><br></pre></td></tr></table></figure>
+
+<p>下面通过Properties集合类如何对properties配置文件进行读取和写入操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class mapdemo6 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws FileNotFoundException,IOException &#123;</span><br><span class="line">		//1.通过Properties进行属性文件读取操作</span><br><span class="line">		Properties pps=new Properties();</span><br><span class="line">		//加载要读取的文件</span><br><span class="line">		pps.load(new FileInputStream(&quot;test.properties&quot;));</span><br><span class="line">		//遍历test.properties键值对元素信息</span><br><span class="line">		pps.forEach((k,v)-&gt;System.out.println(k+&quot;=&quot;+v));</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		//2.通过Properties进行属性文件写入操作</span><br><span class="line">		//指定要写入操作的文件名称和位置</span><br><span class="line">		FileOutputStream out=new FileOutputStream(&quot;test.properties&quot;);</span><br><span class="line">		//向properties类文件进行写入键值对信息</span><br><span class="line">		pps.setProperty(&quot;charset&quot;, &quot;UTF-8&quot;);</span><br><span class="line">		//向properties集合中新增键值对信息写入配置文件</span><br><span class="line">		pps.store(out,&quot;新增charset编码&quot;);		</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="3-7泛型"><a href="#3-7泛型" class="headerlink" title="3.7泛型"></a>3.7泛型</h4><p>集合可以存储任意类型的元素，但是把一个对象存入集合后，集合会“忘记”这个对象的类型，将该对象从集合中取出的时候，这个对象的编译类型就统一变成Object类型。</p>
+<p>为了解决这个问题，在Java中引入了“参数化类型”这个概念，即泛型，泛型可以限定操作的数据类型，在定义集合时，可以使用“&lt;参数化类型&gt;”的方式指定该集合中存储的数据类型。</p>
+<p>具体格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;参数化类型&gt; list=new ArrayList&lt;参数化类型&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class demo8 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">	//使用泛型规定了ArrayList集合只能存放String类型元素</span><br><span class="line">		ArrayList&lt;String&gt; list=new ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">		list.add(&quot;String&quot;);</span><br><span class="line">		list.add(&quot;Collection&quot;);</span><br><span class="line">		for(String str:list)&#123;</span><br><span class="line">			System.out.println(str);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="3-8常用工具类"><a href="#3-8常用工具类" class="headerlink" title="3.8常用工具类"></a>3.8常用工具类</h4><h5 id="1-Collections工具类"><a href="#1-Collections工具类" class="headerlink" title="1.Collections工具类"></a>1.Collections工具类</h5><p>在Java中，针对集合的操作非常频繁，例如将集合中的元素排序，从集合中查找某个元素，针对这些常见操作，java提供了一个工具类专门操作集合，这个类就是Collections，它位于java.util包中。</p>
+<h6 id="添加排序操作"><a href="#添加排序操作" class="headerlink" title="添加排序操作"></a>添加排序操作</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class demo9 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		ArrayList&lt;String&gt; list=new ArrayList&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		Collections.addAll(list,&quot;C&quot;,&quot;Z&quot;,&quot;B&quot;,&quot;K&quot;);	//添加元素</span><br><span class="line">		System.out.println(&quot;排序前:&quot;+list);</span><br><span class="line">		Collections.reverse(list);    	//反转集合</span><br><span class="line">		System.out.println(&quot;反转后:&quot;+list);</span><br><span class="line">		</span><br><span class="line">		Collections.sort(list); 	//按自然顺序排序</span><br><span class="line">		System.out.println(&quot;按自然顺序排序后:&quot;+list);</span><br><span class="line">		</span><br><span class="line">		Collections.shuffle(list);  	//随机打乱集合元素</span><br><span class="line">		System.out.println(&quot;随机打乱集合元素后:&quot;+list);</span><br><span class="line">		</span><br><span class="line">		Collections.swap(list,0,list.size()-1);	//将首位元素交换</span><br><span class="line">		System.out.println(&quot;将首位元素交换后:&quot;+list);		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="查找，替换操作"><a href="#查找，替换操作" class="headerlink" title="查找，替换操作"></a>查找，替换操作</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class demo10 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		ArrayList&lt;Integer&gt; list=new ArrayList&lt;&gt;();</span><br><span class="line">		Collections.addAll(list,-3,2,9,5,8);</span><br><span class="line">		System.out.println(&quot;集合中的元素:&quot;+list);</span><br><span class="line">		System.out.println(&quot;集合中的最大元素:&quot;+Collections.max(list));</span><br><span class="line">		System.out.println(&quot;集合中的最小元素:&quot;+Collections.min(list));</span><br><span class="line">		Collections.replaceAll(list,8,0);	//把集合中的8用0替换</span><br><span class="line">		</span><br><span class="line">		System.out.println(&quot;替换后的集合:&quot;+list);</span><br><span class="line">		Collections.sort(list);</span><br><span class="line">		System.out.println(&quot;集合排序后的顺序:&quot;+list);</span><br><span class="line">		int index=Collections.binarySearch(list, 9);//二分查找前必须保证集合是有序的</span><br><span class="line">		System.out.println(index);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-Arrays工具类"><a href="#2-Arrays工具类" class="headerlink" title="2.Arrays工具类"></a>2.Arrays工具类</h5><p>Arrays是在java.util包中的针对数组操作的数组工具类，提供了针对数组操作的大量静态方法。</p>
+<h6 id="使用sort-方法排序"><a href="#使用sort-方法排序" class="headerlink" title="使用sort()方法排序"></a>使用sort()方法排序</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class shuzu1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int[] arrs=&#123;9,8,3,5,2&#125;;</span><br><span class="line">		System.out.println(&quot;排序前:&quot;);</span><br><span class="line">		printArray(arrs);			</span><br><span class="line">		</span><br><span class="line">		Arrays.sort(arrs);	//调用工具类</span><br><span class="line">		System.out.println(&quot;排序后:&quot;);</span><br><span class="line">		printArray(arrs);	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private static void printArray(int[] arrs) &#123;	</span><br><span class="line">		System.out.print(&quot;[&quot;);</span><br><span class="line">		for(int a:arrs)&#123;</span><br><span class="line">			System.out.print(a);</span><br><span class="line">			System.out.print(&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;]&quot;);		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用Arrays的sort()方法会按照自然顺序对数组元素进行排序，也可以给sort()方法传入比较器参数按照定制排序，使用非常方便。</p>
+<h6 id="使用binarySearch-Object-a-Object-key-方法查找元素"><a href="#使用binarySearch-Object-a-Object-key-方法查找元素" class="headerlink" title="使用binarySearch(Object[] a,Object[] key)方法查找元素"></a>使用binarySearch(Object[] a,Object[] key)方法查找元素</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class shuzu2 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int[] arr=&#123;9,8,3,5,2&#125;;</span><br><span class="line">		Arrays.sort(arr);</span><br><span class="line">		int index=Arrays.binarySearch(arr,3);	//查找指定元素3</span><br><span class="line">		System.out.println(index);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>binarySearch()方法只能针对排序后的数组进行查找，应为采用的是二分查找法、</p>
+<h6 id="使用copyOfRange-int-original-int-from-int-to-方法拷贝元素"><a href="#使用copyOfRange-int-original-int-from-int-to-方法拷贝元素" class="headerlink" title="使用copyOfRange(int[] original,int from ,int to)方法拷贝元素"></a>使用copyOfRange(int[] original,int from ,int to)方法拷贝元素</h6><p>在程序开发中，经常要在不破坏原数组的情况下使用数组部分元素，这时可以使用Arrays工具类的copyOfRange()方法将数组中指定范围的元素拷贝到一个新数组中，该方法中original参数表示被拷贝的数组，form表示被拷贝元素的初始索引（包括），To表示最后索引（不包括）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class shuzu3 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int[] arr=&#123;9,8,3,5,2&#125;;</span><br><span class="line">		int[] copied=Arrays.copyOfRange(arr,1,7);</span><br><span class="line">		for(int a:copied)&#123;</span><br><span class="line">			System.out.print(a);</span><br><span class="line">			System.out.print(&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//运行结果（超过最大索引，默认为0）</span><br><span class="line">8 3 5 2 0 0 </span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="使用fill（Object-a-Object-val）方法替换元素"><a href="#使用fill（Object-a-Object-val）方法替换元素" class="headerlink" title="使用fill（Object[] a,Object[] val）方法替换元素"></a>使用fill（Object[] a,Object[] val）方法替换元素</h6><p>该方法可以将特定的值赋给数组中的每一个元素</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class shuzu4 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int[] arr=&#123;1,2,3,4&#125;;</span><br><span class="line">		Arrays.fill(arr, 0);</span><br><span class="line">		for(int a:arr)&#123;</span><br><span class="line">			System.out.print(a);</span><br><span class="line">			System.out.print(&quot; &quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//运行结果</span><br><span class="line">0 0 0 0</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-9聚合操作"><a href="#3-9聚合操作" class="headerlink" title="3.9聚合操作"></a>3.9聚合操作</h4><p>Lambda表达式可以简化集合和数组的遍历，过滤和提取等操作，正是基于Lambda这些特性，在JDK8中新增了一个聚合操作。</p>
+<h5 id="1-聚合操作简介"><a href="#1-聚合操作简介" class="headerlink" title="1.聚合操作简介"></a>1.聚合操作简介</h5><p>在JDK8中增加了一个Stream接口，该接口可以将集合，数组中的元素转换为Stream流的形式，并结合Lambda表达式的优势来进一步简化集合，数组中元素的查找，过滤，转换等操作，这一新功能就是聚合操作。</p>
+<p>在程序中，使用聚合操作没有绝对的语法规则，根据实际操作流程，主要分为以下3个步骤：</p>
+<ol>
+<li>将原始集合或数组对象转换为Stream流对象</li>
+<li>对Stream流对象中的元素进行一系列的过滤，查找等中间操作(Intermediate Operations)，然后返回仍然返回一个Stream流对象</li>
+<li>对Stream流进行遍历，统计，收集等终结操作（Terminal Operation），获取想要的结果</li>
+</ol>
+<p>案例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class Streamdemo1 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		</span><br><span class="line">		//创建一个List集合对象</span><br><span class="line">		List&lt;String&gt; list=new ArrayList&lt;&gt;();</span><br><span class="line">		list.add(&quot;张三&quot;);</span><br><span class="line">		list.add(&quot;李四&quot;);</span><br><span class="line">		list.add(&quot;张小明&quot;);</span><br><span class="line">		list.add(&quot;张阳&quot;);</span><br><span class="line">		</span><br><span class="line">		//1.创建一个Stream流对象</span><br><span class="line">		Stream&lt;String&gt; stream=list.stream();</span><br><span class="line">		</span><br><span class="line">		//2.对Stream流中的元素做过滤，截取等操作</span><br><span class="line">		Stream&lt;String&gt; stream2=stream.filter(i-&gt;i.startsWith(&quot;张&quot;));</span><br><span class="line">		Stream&lt;String&gt; stream3=stream2.limit(2);</span><br><span class="line">		</span><br><span class="line">		//3.对Stream流中的元素进行终结操作，进行遍历输出</span><br><span class="line">		stream3.forEach(j-&gt;System.out.println(j));</span><br><span class="line">		System.out.println(&quot;==========&quot;);</span><br><span class="line">		</span><br><span class="line">		//通过链式表达式的形式完成聚合操作</span><br><span class="line">		list.stream().filter(i-&gt;i.startsWith(&quot;张&quot;)).limit(2).forEach(j-&gt;System.out.println(j));</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，在进行聚合操作时，只是改变了Stream流对象中的数据，并不会改变原始集合或数组中的源数据。</p>
+<h5 id="2-创建Stream流对象"><a href="#2-创建Stream流对象" class="headerlink" title="2.创建Stream流对象"></a>2.创建Stream流对象</h5><p>在Java中，集合对象有对应的集合类，可以通过调用集合类提供的静态方法创建Stream流对象，而数组结构却没有相应的数组类，所以必须通过其他方式创建Stream流对象，针对不同的数据源，java提供了多种创建Stream流对象的方式:</p>
+<ul>
+<li>所有的Collections集合都可以使用Stream()静态方法获取Stream流对象</li>
+<li>Stream接口的of()静态方法可以获取基本类型包装类的数组，引用类型数组和单个元素的Stream流对象</li>
+<li>Arrays工具类的stream()静态方法也可以获取数组元素的Stream流对象</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Streamdemo2 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		//创建一个数组</span><br><span class="line">		Integer[] array=&#123;9,8,3,5,2&#125;;</span><br><span class="line">		//将数组转换为List集合</span><br><span class="line">		List&lt;Integer&gt; list=Arrays.asList(array);</span><br><span class="line">		</span><br><span class="line">		//使用集合对象的stream（）静态方法创建Stream流对象</span><br><span class="line">		Stream&lt;Integer&gt; stream=list.stream();</span><br><span class="line">		stream.forEach(i-&gt;System.out.print(i));</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		//使用Stream接口of（）静态方法</span><br><span class="line">		Stream&lt;Integer&gt; stream2=Stream.of(array);</span><br><span class="line">		stream2.forEach(i-&gt;System.out.print(i));</span><br><span class="line">		</span><br><span class="line">		//使用Arrays工具类的stream（）静态方法</span><br><span class="line">		Stream&lt;Integer&gt; stream3=Arrays.stream(array);</span><br><span class="line">		stream3.forEach(i-&gt;System.out.print(i));	</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果想把Map集合创建Stream流对象，必须先通过Map集合的KeySet（），values（），entrySet（）等方法把Map集合转换为单列Set集合。</p>
+<h5 id="3-Stream流的常用方法"><a href="#3-Stream流的常用方法" class="headerlink" title="3.Stream流的常用方法"></a>3.Stream流的常用方法</h5><p>JDK8为流对象提供了非常多的方法，这些方法划分为中间操作和终结操作两种类型。这两种类型操作方法的根本区别就是方法的返回值，只要返回值不是Stream流对象的就是终结操作，将会终结当前流模型，而其他操作都属于中间操作。</p>
+<h6 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h6><p>方法声明如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void forEach(Consumer&lt;? super T&gt; action);</span><br></pre></td></tr></table></figure>
+
+<p>接收一个Consumer函数式接口参数（Lambda或方法引用）作为遍历动作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Streamdemo3 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Stream&lt;String&gt; stream=Stream.of(&quot;张三&quot;,&quot;李四&quot;,&quot;张小明&quot;,&quot;张阳&quot;);</span><br><span class="line"></span><br><span class="line">		stream.forEach(i-&gt;System.out.println(i));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h6><p>使用过滤filter()方法可以将一个Stream对象中的元素筛选转换成另一个流对象，方法声明如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;T&gt; filter(Predicate&lt;? super T&gt; action);</span><br></pre></td></tr></table></figure>
+
+<p>接收一个Predicate函数式接口参数作为筛选条件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Streamdemo4 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Stream&lt;String&gt; stream=Stream.of(&quot;张三&quot;,&quot;李四&quot;,&quot;张小明&quot;,&quot;张阳&quot;);</span><br><span class="line"></span><br><span class="line">	stream.filter(i-&gt;i.startsWith(&quot;张&quot;))</span><br><span class="line">		.filter(i-&gt;i.length()&gt;2)</span><br><span class="line">		.forEach(System.out::println);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h6><p>Stream流对象的map()方法可以将流对象中的元素通过特定的规则进行修改后映射为另一个流对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;R&gt;Stream&lt;R&gt; map(Function &lt;? super T,? extends R&gt; mapper);</span><br></pre></td></tr></table></figure>
+
+<p>接收一个Function函数式接口参数作为映射条件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Streamdemo5 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Stream&lt;String&gt; stream=Stream.of(&quot;a1&quot;,&quot;a2&quot;,&quot;b1&quot;,&quot;c2&quot;,&quot;c1&quot;);</span><br><span class="line">		</span><br><span class="line">		stream.filter(s-&gt;s.startsWith(&quot;c&quot;))</span><br><span class="line">		.map(String::toUpperCase)		//对流元素进行映射，将全部字符改为大写</span><br><span class="line">		.sorted()	//对流元素进行排序</span><br><span class="line">		.forEach(System.out::println);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="截取"><a href="#截取" class="headerlink" title="截取"></a>截取</h6><p>Stream流对象的limit()方法用于对流对象中的元素进行截取操作，该方法只需要一个参数，并且截取的是流中的前n个元素</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Streamdemo6 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Stream&lt;String&gt; stream=Stream.of(&quot;张三&quot;,&quot;李四&quot;,&quot;张小明&quot;,&quot;张阳&quot;);</span><br><span class="line"></span><br><span class="line">		stream.skip(1) 	//跳过流中第一个元素</span><br><span class="line">		.limit(2)  	//截取流中前两个元素</span><br><span class="line">		.forEach(System.out::println);			</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//运行结果</span><br><span class="line">李四</span><br><span class="line">张小明</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="收集"><a href="#收集" class="headerlink" title="收集"></a>收集</h6><p>collect()方法是一种十分有用的终结操作，他可以把Stream中的元素保存为另外一种形式，比如集合，字符串等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;R,A&gt;R collect(Collector&lt;? super T,A,R&gt; collector);</span><br></pre></td></tr></table></figure>
+
+<p>collect()方法使用Collector作为参数，Collector包含四种不同的操作：supplier（初始构造器），accumulator（累计器），combiner（组合器），finisher（终结者）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class Streamdemo7 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Stream&lt;String&gt; stream=Stream.of(&quot;张三&quot;,&quot;李四&quot;,&quot;张小明&quot;,&quot;张阳&quot;);</span><br><span class="line"></span><br><span class="line">		List&lt;String&gt;list=stream.filter(i-&gt;i.startsWith(&quot;张&quot;))</span><br><span class="line">				.collect(Collectors.toList());</span><br><span class="line">		System.out.println(list);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		Stream&lt;String&gt; stream2=Stream.of(&quot;张三&quot;,&quot;李四&quot;,&quot;张小明&quot;,&quot;张阳&quot;);</span><br><span class="line">		String string=stream2.filter(i-&gt;i.startsWith(&quot;张&quot;))</span><br><span class="line">				.collect(Collectors.joining(&quot;and&quot;));</span><br><span class="line">		System.out.println(string);</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>注意：一个Stream流对象可以连续进行多次中间操作，仍会返回一个流对象，但一个流对象只能进行一次终结操作，并且一旦进行终结操作后，该流对象就不复存在了。</p>
+<h5 id="4-Parallel-Stream-并行流"><a href="#4-Parallel-Stream-并行流" class="headerlink" title="4.Parallel Stream(并行流)"></a>4.Parallel Stream(并行流)</h5><p>前面介绍的创建Stream流对象的3中方式都是创建的串行流（Serial Stream）,所谓串行流就是将源数据转换为一个流对象，然后在单线程下执行聚合操作的流（也就是单一管道流）。JDK8还提供了一个并行流，就是将数据源分为多个子流对象进行多线程操作（也就是多个管道流），然后再将处理结果汇总成一个流对象。</p>
+<p>（线程安全问题）聚合操作中使用Stream并行流，前提：执行操作的源数据在并行执行过程中不会被修改。</p>
+<p>在创建Stream流对象时，除非有特别声明，否则默认创建的都是串行流。JDK8中提供了两种方式创建Stream并行流：</p>
+<ul>
+<li>通过Collection集合接口的parallelStream()方法直接将集合类型的源数据转变为Stream并行流</li>
+<li>通过BaseStream接口的parallel()方法将串行流转变为并行流</li>
+</ul>
+<p>另外在BaseStream接口中还有一个方法isParallel)()方法用于判断当前Stream流对象是否为并行流</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Streamdemo8 &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">			</span><br><span class="line">		List&lt;String&gt; list=Arrays.asList(&quot;张三&quot;,&quot;李四&quot;,&quot;张小明&quot;,&quot;张阳&quot;);		</span><br><span class="line">		Stream&lt;String&gt; parallelStream=list.parallelStream();</span><br><span class="line">		System.out.println(parallelStream.isParallel());</span><br><span class="line">		</span><br><span class="line">		Stream&lt;String&gt; stream=Stream.of(&quot;张三&quot;,&quot;李四&quot;,&quot;张小明&quot;,&quot;张阳&quot;);</span><br><span class="line">		Stream&lt;String&gt; parallel=stream.parallel();</span><br><span class="line">		System.out.println(parallel.isParallel());</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/11/Git/" rel="prev" title="Git">
+                  <i class="fa fa-chevron-left"></i> Git
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/12/NET%E8%B7%A8%E5%B9%B3%E5%8F%B0/" rel="next" title="NET跨平台">
+                  NET跨平台 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC81ODczNS8zNTE5Nw=="></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder"></span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script src="/js/third-party/comments/livere.js"></script>
+
+</body>
+</html>

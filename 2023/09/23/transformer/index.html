@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="什么是batch以及什么是padding？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="transformer">
+<meta property="og:url" content="http://example.com/2023/09/23/transformer/index.html">
+<meta property="og:site_name" content="island443">
+<meta property="og:description" content="什么是batch以及什么是padding？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/64fab196661c6c8e5497632d.webp">
+<meta property="og:image" content="https://pic.imgdb.cn/item/64fab1ea661c6c8e5497738e.webp">
+<meta property="og:image" content="https://pic.imgdb.cn/item/64fab22c661c6c8e54977f31.webp">
+<meta property="og:image" content="https://pic.imgdb.cn/item/64feba0f661c6c8e547116d9.webp">
+<meta property="og:image" content="https://pic.imgdb.cn/item/64fab163661c6c8e549754d1.webp">
+<meta property="article:published_time" content="2023-09-23T00:54:54.000Z">
+<meta property="article:modified_time" content="2023-09-23T01:10:00.468Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/64fab196661c6c8e5497632d.webp">
+
+
+<link rel="canonical" href="http://example.com/2023/09/23/transformer/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/09/23/transformer/","path":"2023/09/23/transformer/","title":"transformer"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>transformer | island443</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">island443</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFbatch%E4%BB%A5%E5%8F%8A%E4%BB%80%E4%B9%88%E6%98%AFpadding%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是batch以及什么是padding？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#encoder%E4%B8%AD%E5%8F%AF%E8%AE%AD%E7%BB%83%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">encoder中可训练的参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BD%BF%E7%94%A8%E6%8E%A9%E7%A0%81%E4%BB%A5%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%8E%A9%E7%A0%81%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">什么时候使用掩码以及为什么使用掩码？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">什么是激活函数？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linear%E5%92%8CSoftmax"><span class="nav-number">5.</span> <span class="nav-text">Linear和Softmax?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Add-Norm"><span class="nav-number">6.</span> <span class="nav-text">Add&amp;Norm?</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99%EF%BC%88The-Annotated-Transformer%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">代码编写（The Annotated Transformer）</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt=""
+      src="/image%5Cavatar.jpg">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description">非志无以成学</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/island443" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;island443" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2301062786@qq.com" title="E-Mail → mailto:2301062786@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/23/transformer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/image%5Cavatar.jpg">
+      <meta itemprop="name" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="island443">
+      <meta itemprop="description" content="非志无以成学">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="transformer | island443">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          transformer
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-09-23 08:54:54 / 修改时间：09:10:00" itemprop="dateCreated datePublished" datetime="2023-09-23T08:54:54+08:00">2023-09-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h4 id="什么是batch以及什么是padding？"><a href="#什么是batch以及什么是padding？" class="headerlink" title="什么是batch以及什么是padding？"></a>什么是batch以及什么是padding？</h4><span id="more"></span>
+
+<p>batch的中文意思是一批，比如翻译任务batch1是8句中文，每个句子最大的长度是10。batch2是9句中文，最大长度是20。 <strong>同一个batch内要padding到一个长度，不同batch之间可以不一样</strong>。一般batch个句子经过embedding层之后，它的维度会变成[batch_size,seq_length,embedding_size],batch_size是句子个数。seq_length是句子长度，要padding到一个长度。embedding_size是把一个字映射成向量后向量的维度。</p>
+<p>翻译时因为实际有多个双语言对，每一对句子的长度和其他对不一定一样，所以我们可以分别取source sentence的最长的长度，以及target sentence的最长的长度。如果一个句子不足该长度，则在右边补0。</p>
+<p>（padding）</p>
+<h4 id="encoder中可训练的参数"><a href="#encoder中可训练的参数" class="headerlink" title="encoder中可训练的参数"></a><strong>encoder中可训练的参数</strong></h4><p>1.词进行embeding时，假设只有两个词，每个词是一个4维向量，则为2*4&#x3D;8个参数</p>
+<p>2.注意力机制中的权重矩阵WQ0, WK0, WV0到WQ7, WK7, WV7，一共是24个矩阵</p>
+<p>3.WO是一个矩阵，是24*4的</p>
+<h4 id="什么时候使用掩码以及为什么使用掩码？"><a href="#什么时候使用掩码以及为什么使用掩码？" class="headerlink" title="什么时候使用掩码以及为什么使用掩码？"></a>什么时候使用掩码以及为什么使用掩码？</h4><p>transformer中掩码只有两种情况分别为padding_mask和attn_mask。</p>
+<p>attn_mask只用于decoder训练时的解码过程，作用是掩盖掉当前时刻之后的信息，让模型只看到当前时刻之前的信息，如下图</p>
+<p><img src="https://pic.imgdb.cn/item/64fab196661c6c8e5497632d.webp"></p>
+<p>padding_mask指的是在encoder和decoder的输入中，由于batch的序列长短不一，被padding的内容需要用padding_mask标识出来，然后再计算注意力权重的时候忽略掉这部分内容</p>
+<p><img src="https://pic.imgdb.cn/item/64fab1ea661c6c8e5497738e.webp"></p>
+<p>如上图P表示padding的位置，对于 我是谁pp 这个序列，前3个字符有效后2个无效，因此其mask向量为[true,true,true,false,false],通过这个mask向量，后两列被替换成负无穷。</p>
+<p><img src="https://pic.imgdb.cn/item/64fab22c661c6c8e54977f31.webp"></p>
+<h4 id="什么是激活函数？"><a href="#什么是激活函数？" class="headerlink" title="什么是激活函数？"></a>什么是激活函数？</h4><p>激活函数是人工神经网络中引入的一种函数，它帮助神经网络学习数据中的复杂模式。</p>
+<p>激活函数分为线性的（感知器，全连接层） 和 非线性的（sigmoid函数，ReLu函数，Tanh函数）</p>
+<p>例如： </p>
+<p>sigmoid函数的输出范围在0到1之间，通常用于二元分类任务</p>
+<p>ReLu是一种常用的全连接层激活函数，把负输入置为0，正输入保持不变</p>
+<p>Tanh与ReLu类似，输出范围在-1到1之间</p>
+<p>是在继承了nn.Module的神经网络类中，init函数和forword函数中进行调用，可以处理图像数据，给图片引入非线性特征，增加模型的泛化能力</p>
+<h4 id="Linear和Softmax"><a href="#Linear和Softmax" class="headerlink" title="Linear和Softmax?"></a>Linear和Softmax?</h4><p>解码组件最后会输出一个实数向量。我们如何把浮点数变成一个单词？这便是线性变换层要做的工作，它之后就是Softmax层。</p>
+<p>线性变换层是一个简单的全连接神经网络，它可以把解码组件产生的向量投射到一个比它大得多的、被称作对数几率（logits）的向量里。</p>
+<p>不妨假设我们的模型从训练集中学习一万个不同的英语单词（我们模型的“输出词表”）。因此对数几率向量为一万个单元格长度的向量——每个单元格对应某一个单词的分数。</p>
+<p>接下来的Softmax 层便会把那些分数变成概率（都为正数、上限1.0）。概率最高的单元格被选中，并且它对应的单词被作为这个时间步的输出。</p>
+<h4 id="Add-Norm"><a href="#Add-Norm" class="headerlink" title="Add&amp;Norm?"></a>Add&amp;Norm?</h4><p>Add指得是残差相加，残差的引入是为了解决由于深度带来的网络退化</p>
+<p>Norm指的是对输出值进行归一化处理</p>
+<p>Add&amp;Norm目的是加快模型收敛速度并提高模型性能</p>
+<p>下面这张图是 残差相加 和 归一化处理：</p>
+<p><img src="https://pic.imgdb.cn/item/64feba0f661c6c8e547116d9.webp"></p>
+<p>残差计算具体体现在上图的，LayerNorm(X+Z)的 <strong>X+Z的部分</strong>，其中X代表的是叠加了位置编码的浅绿色矩阵，Z来自自注意力子层的输出，X和Z都是2行4列，所以可以进行element-wise相加，得到一个新的2行4列的矩阵，然后再进行LayerNorm操作。</p>
+<p>执行完Add&amp;Norm操作后，得到深红色的矩阵Z，其两个行向量z1和z2会分别发送给feed forward层。</p>
+<p>至于LayerNorm( )这个函数如何进行归一化，则计算方法不在此说明</p>
+<h1 id="代码编写（The-Annotated-Transformer）"><a href="#代码编写（The-Annotated-Transformer）" class="headerlink" title="代码编写（The Annotated Transformer）"></a>代码编写（The Annotated Transformer）</h1><p><img src="https://pic.imgdb.cn/item/64fab163661c6c8e549754d1.webp"></p>
+<p>在代码编写中，总类EncoderDecoder包括5个部分：</p>
+<p>1左下角输入序列，word embedding + positional encoding，两者通过torch.nn.Sequential来串起来使用</p>
+<p>2右下角的输入序列，两者通过torch.nn.Sequential来串起来使用，训练阶段是完整的输出序列+mask，测试阶段是到当前位置为止的输出序列+mask</p>
+<p>3正左的encoder，6个EncoderLayer加上一个LayerNorm（做带有可训练参数的，批标准化）</p>
+<p>4正右的decoder，6个DecoderLayer加上一个LayerNorm（做带有可训练参数的，批标准化）</p>
+<p>右上角的generator，括一个全连接层和一个softmax层，负责把top-N 候选输出序列找出来</p>
+<p><strong>Embedding</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> parser1 <span class="keyword">import</span> args</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Embeddings</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, vocab</span>):  <span class="comment"># d_model为映射的向量维度，vocab词汇表大小</span></span><br><span class="line">        <span class="built_in">super</span>(Embeddings, self).__init__()  <span class="comment"># 调用父类构造方法</span></span><br><span class="line">        self.lut = nn.Embedding(vocab, d_model)  <span class="comment"># 返回的是一个嵌入层（可以用于将离散的类别数据如词汇转换为连续的向量）</span></span><br><span class="line">        self.d_model = d_model</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.lut(x) * math.sqrt(self.d_model)  <span class="comment"># 这里把嵌入后的数据，乘了一个维度的开方。保持相对的相似性度量不变（当然不乘也不变）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PositionalEncoding</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, dropout, max_len=<span class="number">5000</span></span>):  <span class="comment"># dropout指dropout层概率，max_len表示最大序列长度，默认值为5000。</span></span><br><span class="line">        <span class="built_in">super</span>(PositionalEncoding, self).__init__()</span><br><span class="line">        self.dropout = nn.Dropout(p=dropout)  <span class="comment"># 创建一个dropout层，p参数为dropout的概率</span></span><br><span class="line"></span><br><span class="line">        pe = torch.zeros(max_len, d_model, device=args.device)  <span class="comment"># 创建一个全零矩阵，大小为[max_len, d_model]，存在于args.device指定的设备上</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># torch.arange用于生成一个一维张量，从0开始到max_len长度结束，然后增加一个维度。[0，1，2，3，...，max_len]</span></span><br><span class="line">        position = torch.arange(<span class="number">0.</span>, max_len, device=args.device).unsqueeze(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        div_term = torch.exp(torch.arange(<span class="number">0.</span>, d_model, <span class="number">2</span>, device=args.device) * (-(math.log(<span class="number">10000.0</span>) / d_model)))</span><br><span class="line"></span><br><span class="line">        pe[:, <span class="number">0</span>::<span class="number">2</span>] = torch.sin(position * div_term)  <span class="comment"># 将position与div_term的乘积的正弦值赋值给pe矩阵的偶数索引列</span></span><br><span class="line">        pe[:, <span class="number">1</span>::<span class="number">2</span>] = torch.cos(position * div_term)</span><br><span class="line">        pe = pe.unsqueeze(<span class="number">0</span>)  <span class="comment"># 加1个维度</span></span><br><span class="line">        self.register_buffer(<span class="string">&#x27;pe&#x27;</span>, pe)  <span class="comment"># 将pe矩阵注册为一个缓冲区，这样它就可以被优化，并且不需要计算梯度</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = x + Variable(self.pe[:, :x.size(<span class="number">1</span>)], requires_grad=<span class="literal">False</span>)  <span class="comment"># 将输入x与位置编码pe对应部分相加，结果存入x中，这里不需要计算梯度</span></span><br><span class="line">        <span class="keyword">return</span> self.dropout(x)  <span class="comment"># 返回应用dropout后的结果</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>attention</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> math, copy</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> clones</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">attention</span>(<span class="params">query, key, value, mask=<span class="literal">None</span>, dropout=<span class="literal">None</span></span>):</span><br><span class="line">    d_k = query.size(-<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 计算query和key的转置的矩阵乘积，然后除以d_k的平方根。结果存储在scores中</span></span><br><span class="line">    scores = torch.matmul(query, key.transpose(-<span class="number">2</span>, -<span class="number">1</span>)) / math.sqrt(d_k)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="comment"># 将mask中值为0的位置在scores中的对应位置填充为-1e9</span></span><br><span class="line">        scores = scores.masked_fill(mask == <span class="number">0</span>, -<span class="number">1e9</span>)</span><br><span class="line">    <span class="comment"># 对scores进行softmax操作，使其在最后一个维度（每一个列上）上的值在0到1之间，（或者说是每个样本的特征）结果存储在p_attn中</span></span><br><span class="line">    p_attn = F.softmax(scores, dim=-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> dropout <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        p_attn = dropout(p_attn)</span><br><span class="line">    <span class="keyword">return</span> torch.matmul(p_attn, value), p_attn</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MultiHeadedAttention</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, h, d_model, dropout=<span class="number">0.1</span></span>):        <span class="comment"># 参数h是头的个数，d_model是词向量的维度，dropout表示在训练过程中应用于模型的随机丢弃率</span></span><br><span class="line">        <span class="built_in">super</span>(MultiHeadedAttention, self).__init__()</span><br><span class="line">        <span class="comment"># 保证可以整除</span></span><br><span class="line">        <span class="keyword">assert</span> d_model % h == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        self.d_k = d_model // h                             <span class="comment"># 计算每个头的维度数，是词向量维度除以头的个数</span></span><br><span class="line">        self.h = h</span><br><span class="line">        self.linears = clones(nn.Linear(d_model, d_model), <span class="number">4</span>) <span class="comment"># 创建4个线性层，输入和输出维度都是d_model。这些线性层用于在注意力机制中转换query，key和value</span></span><br><span class="line">        self.attn = <span class="literal">None</span></span><br><span class="line">        self.dropout = nn.Dropout(p=dropout)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, query, key, value, mask=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            mask = mask.unsqueeze(<span class="number">1</span>)    <span class="comment"># 第1个维度上增加一个维度</span></span><br><span class="line">        nbatches = query.size(<span class="number">0</span>)        <span class="comment"># 获取query的第0个维度的大小，通常这代表批次的大小</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 将query，key和value通过线性层处理，然后重塑张量的形状并交换维度，以便进行注意力计算</span></span><br><span class="line">        query, key, value = \</span><br><span class="line">            [l(x).view(nbatches, -<span class="number">1</span>, self.h, self.d_k).transpose(<span class="number">1</span>, <span class="number">2</span>) <span class="comment"># 将输入x通过线性层l，然后改变其形状，并交换其第二个和第三个维度，nbatches批次大小</span></span><br><span class="line">             <span class="keyword">for</span> l, x <span class="keyword">in</span> <span class="built_in">zip</span>(self.linears, (query, key, value))]    <span class="comment"># zip返回一个元组组成的迭代器，第一次l=self.liners的第一个元素，x=query，以此类推3次</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 调用attention函数进行注意力计算，返回结果x和注意力得分矩阵</span></span><br><span class="line">        x, self.attn = attention(query, key, value, mask=mask, dropout=self.dropout)</span><br><span class="line"></span><br><span class="line">        x = x.transpose(<span class="number">1</span>, <span class="number">2</span>).contiguous().view(nbatches, -<span class="number">1</span>, self.h * self.d_k)</span><br><span class="line">        <span class="keyword">return</span> self.linears[-<span class="number">1</span>](x)       <span class="comment"># 将结果通过最后的线性层处理并返回</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>FeedForward</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PositionwiseFeedForward</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, d_ff, dropout=<span class="number">0.1</span></span>):             <span class="comment"># d_model输入数据的维度 d_ff中间层的维度</span></span><br><span class="line">        <span class="built_in">super</span>(PositionwiseFeedForward, self).__init__()</span><br><span class="line">        self.w_1 = nn.Linear(d_model, d_ff)             <span class="comment"># 定义一个线性层，输入维度为d_model，输出维度为d_ff</span></span><br><span class="line">        self.w_2 = nn.Linear(d_ff, d_model)             <span class="comment"># 定义一个线性层，输入维度为d_ff，输出维度为d_model</span></span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># 返回经过self.w_1线性变换后的x，然后通过ReLU激活函数，再经过dropout层，最后通过self.w_2线性变换的结果</span></span><br><span class="line">        <span class="keyword">return</span> self.w_2(self.dropout(F.relu(self.w_1(x))))</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Generator</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个模块通常用于序列到序列模型中的目标语言生成</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Generator</span>(nn.Module):</span><br><span class="line">    <span class="comment"># vocab: tgt_vocab</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, d_model, vocab</span>):             <span class="comment"># d_model输入数据的维度 ,vocab目标语言词汇表的大小</span></span><br><span class="line">        <span class="built_in">super</span>(Generator, self).__init__()</span><br><span class="line">        self.proj = nn.Linear(d_model, vocab)       <span class="comment"># 定义一个线性层，输入维度为d_model，输出维度为vocab大小</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># 返回经过self.proj线性变换后的x，然后通过log_softmax函数，按照最后一个维度（按着列来的意思）进行归一化并取对数</span></span><br><span class="line">        <span class="keyword">return</span> F.log_softmax(self.proj(x), dim=-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>SubLayer</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> parser1 <span class="keyword">import</span> args</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LayerNorm</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, features, eps=<span class="number">1e-6</span></span>):  <span class="comment"># features（特征数量）,eps（防止除以零的小量，默认值为1e-6）</span></span><br><span class="line">        <span class="built_in">super</span>(LayerNorm, self).__init__()</span><br><span class="line">        self.a_2 = nn.Parameter(torch.ones(features))  <span class="comment"># 定义一个可学习的参数，初始化为features维的1向量</span></span><br><span class="line">        self.b_2 = nn.Parameter(torch.zeros(features))  <span class="comment"># 定义一个可学习的参数，初始化为features维的0向量</span></span><br><span class="line">        self.eps = eps</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        mean = x.mean(-<span class="number">1</span>, keepdim=<span class="literal">True</span>)  <span class="comment"># 计算x沿着最后一个维度的均值，并保持维度不变，赋值给mean</span></span><br><span class="line">        std = x.std(-<span class="number">1</span>, keepdim=<span class="literal">True</span>)  <span class="comment"># 计算x沿着最后一个维度的标准差，并保持维度不变，赋值给std</span></span><br><span class="line">        <span class="keyword">return</span> self.a_2 * (x - mean) / (std + self.eps) + self.b_2  <span class="comment"># 返回归一化后的x</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SublayerConnection</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, size, dropout</span>):  <span class="comment"># size输入数据的维度 dropout丢失率</span></span><br><span class="line">        <span class="built_in">super</span>(SublayerConnection, self).__init__()</span><br><span class="line">        self.norm = LayerNorm(size)         <span class="comment"># 归一化</span></span><br><span class="line">        self.dropout = nn.Dropout(dropout)  <span class="comment"># 防止过拟合</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, sublayer</span>):</span><br><span class="line">        <span class="keyword">return</span> x + self.dropout(sublayer(self.norm(x)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Encoder</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> clones</span><br><span class="line"><span class="keyword">from</span> model.sublayer <span class="keyword">import</span> SublayerConnection, LayerNorm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Encoder</span>(nn.Module):</span><br><span class="line">    <span class="comment"># layer = EncoderLayer</span></span><br><span class="line">    <span class="comment"># N = 6</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, layer, N</span>):       <span class="comment"># 接受两个参数，layer是编码器层的实例，N是编码器的层数</span></span><br><span class="line">        <span class="built_in">super</span>(Encoder, self).__init__()</span><br><span class="line">        self.layers = clones(layer, N)      <span class="comment"># 创建一个由layer克隆的层组成的列表，共&#x27;N&#x27;层</span></span><br><span class="line">        self.norm = LayerNorm(layer.size)   <span class="comment"># 初始化一个层归一化模块（LayerNorm），其大小等于layer的大小</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, mask</span>):</span><br><span class="line">        <span class="comment"># 连续encode 6次，且是循环的encode</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers:</span><br><span class="line">            x = layer(x, mask)      <span class="comment"># 将输入x和掩码mask传递给当前的编码层</span></span><br><span class="line">        <span class="keyword">return</span> self.norm(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">EncoderLayer</span>(nn.Module):</span><br><span class="line">    <span class="comment"># size是层的大小，self_attn是自注意力模块，feed_forward是前馈神经网络模块，dropout是丢弃率。</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, size, self_attn, feed_forward, dropout</span>):</span><br><span class="line">        <span class="built_in">super</span>(EncoderLayer, self).__init__()</span><br><span class="line">        self.self_attn = self_attn</span><br><span class="line">        self.feed_forward = feed_forward</span><br><span class="line">        self.sublayer = clones(SublayerConnection(size, dropout), <span class="number">2</span>)  <span class="comment"># 返回两个 层连接类 的列表</span></span><br><span class="line">        <span class="comment"># d_model</span></span><br><span class="line">        self.size = size</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    SublayerConnection的作用就是把multi和ffn连在一起，只不过每一层输出之后都要先norm再残差</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, mask</span>):</span><br><span class="line">        x = self.sublayer[<span class="number">0</span>](x, <span class="keyword">lambda</span> x: self.self_attn(x, x, x, mask))</span><br><span class="line">        <span class="comment"># 注意到attn得到的结果x直接作为了下一层的输入</span></span><br><span class="line">        <span class="keyword">return</span> self.sublayer[<span class="number">1</span>](x, self.feed_forward)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Decoder</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> clones</span><br><span class="line"><span class="keyword">from</span> model.sublayer <span class="keyword">import</span> SublayerConnection, LayerNorm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Decoder</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, layer, N</span>):</span><br><span class="line">        <span class="built_in">super</span>(Decoder, self).__init__()</span><br><span class="line">        self.layers = clones(layer, N)</span><br><span class="line">        self.norm = LayerNorm(layer.size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, memory, src_mask, tgt_mask</span>):</span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers:</span><br><span class="line">            x = layer(x, memory, src_mask, tgt_mask)</span><br><span class="line">        <span class="keyword">return</span> self.norm(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DecoderLayer</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, size, self_attn, src_attn, feed_forward, dropout</span>):</span><br><span class="line">        <span class="built_in">super</span>(DecoderLayer, self).__init__()</span><br><span class="line">        self.size = size</span><br><span class="line">        self.self_attn = self_attn</span><br><span class="line">        self.src_attn = src_attn</span><br><span class="line">        self.feed_forward = feed_forward</span><br><span class="line">        self.sublayer = clones(SublayerConnection(size, dropout), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, memory, src_mask, tgt_mask</span>):</span><br><span class="line">        m = memory</span><br><span class="line">        x = self.sublayer[<span class="number">0</span>](x, <span class="keyword">lambda</span> x: self.self_attn(x, x, x, tgt_mask))</span><br><span class="line">        x = self.sublayer[<span class="number">1</span>](x, <span class="keyword">lambda</span> x: self.src_attn(x, m, m, src_mask))</span><br><span class="line">        <span class="keyword">return</span> self.sublayer[<span class="number">2</span>](x, self.feed_forward)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Transformer</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Transformer</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, encoder, decoder, src_embed, tgt_embed, generator</span>):</span><br><span class="line">        <span class="built_in">super</span>(Transformer, self).__init__()</span><br><span class="line">        self.encoder = encoder</span><br><span class="line">        self.decoder = decoder</span><br><span class="line">        self.src_embed = src_embed</span><br><span class="line">        self.tgt_embed = tgt_embed</span><br><span class="line">        self.generator = generator </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">encode</span>(<span class="params">self, src, src_mask</span>):</span><br><span class="line">        <span class="keyword">return</span> self.encoder(self.src_embed(src), src_mask)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decode</span>(<span class="params">self, memory, src_mask, tgt, tgt_mask</span>):</span><br><span class="line">        <span class="keyword">return</span> self.decoder(self.tgt_embed(tgt), memory, src_mask, tgt_mask)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, src, tgt, src_mask, tgt_mask</span>):</span><br><span class="line">        <span class="keyword">return</span> self.decode(self.encode(src, src_mask), src_mask, tgt, tgt_mask)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/29/%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95/" rel="prev" title="遍历算法">
+                  <i class="fa fa-chevron-left"></i> 遍历算法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/09/23/pytorch/" rel="next" title="pytorch">
+                  pytorch <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC81ODczNS8zNTE5Nw=="></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder"></span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script src="/js/third-party/comments/livere.js"></script>
+
+</body>
+</html>
