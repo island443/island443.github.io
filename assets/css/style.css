@@ -1,0 +1,127 @@
+:root{
+  --brand:#ff7aa2;
+  --ink:#222;
+  --muted:#6b7280;
+  --card:rgba(255,255,255,.8);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;}
+
+body{
+  margin:0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color:var(--ink);
+  background:#fff;
+}
+
+
+
+
+/* 通用页面背景（每页可注入 --bg:url(...) ） */
+.page{position:relative; min-height:100vh; overflow:hidden;}
+
+.page::before {
+  content: ""; /* 添加content属性 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  z-index: -2; /* 确保在雾化层之下 */
+}
+
+.page::after{ /* 轻薄雾化层加强可读性 */
+  content:""; position:fixed; inset:0; z-index:-1; backdrop-filter: blur(2px);
+  background:linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35));
+}
+
+
+
+
+.topbar{position:fixed; top:16px; left:16px; right:16px; display:flex; justify-content:space-between; align-items:center; z-index:10}
+.link{color:var(--muted); text-decoration:none; background:var(--card); padding:8px 12px; border-radius:999px; box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.link:hover{color:var(--ink)}
+
+
+.nav-card{max-width:720px; margin:40vh auto 0; padding:36px; 
+text-align:center; background:var(--card); border-radius:24px; box-shadow:0 12px 40px rgba(0,0,0,.12)}
+
+
+
+.nav-card h1{margin:0 0 8px; font-size:40px}
+
+.subtitle{margin:0 0 24px; color:var(--muted)}
+.foot-note{margin-top:24px; color:var(--muted); font-size:14px}
+.btn-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+
+
+/* 按钮 */
+.btn{appearance:none; border:none; cursor:pointer; text-decoration:none; color:#fff; background:#9ca3af; padding:12px 18px; border-radius:16px; font-weight:600; box-shadow:0 10px 24px rgba(0,0,0,.12); transition: transform .1s ease, box-shadow .2s ease}
+.btn:hover{transform:translateY(-1px); box-shadow:0 16px 32px rgba(0,0,0,.16)}
+.btn-primary{background:var(--brand)}
+.btn-ghost{background:rgba(255,255,255,.6); color:var(--ink)}
+
+
+
+@keyframes rise{
+  0%{transform:translateY(0) scale(1); opacity:.6;}
+  100%{transform:translateY(-120vh) scale(0.5); opacity:0;}
+}
+
+
+/* about 页面头像及浮动照片 */
+.about-wrap{position:relative; display:flex; flex-direction:column; align-items:center; padding-top:12vh}
+
+.avatar-card{margin-bottom:24px; text-align:center}
+.avatar{width:160px; height:160px; border-radius:50%; object-fit:cover; border:4px solid #fff; box-shadow:0 8px 28px rgba(0,0,0,.15)}
+.name{margin-top:40px; font-size:24px; font-weight:600; color:var(--ink)}
+
+
+.float-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform, opacity, filter;
+  pointer-events: none;
+}
+
+.float-photo img {
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+  opacity: 0;
+  filter: blur(0px);
+  transform: scale(0.2);
+  transition: all 10s ease; /* 控制模糊→清晰 & 放大 */
+}
+
+.float-photo.show img {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(0.3);
+}
+
+
+
+
+
+
+/* main 页面选择按钮 */
+.choice-wrap{max-width:720px; margin:20vh auto 0; text-align:center}
+.choice-wrap h1{margin-bottom:32px; font-size:32px}
+
+/* 播放器 */
+.player{position:fixed; bottom:24px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.75); padding:8px 16px; border-radius:24px; box-shadow:0 6px 18px rgba(0,0,0,.12); z-index:10}
+.track-name{font-size:14px; color:var(--ink)}
+
+/* fullpage 分屏 */
+.fullpage{height:100vh; overflow:hidden}
+.section{height:100vh; display:flex; justify-content:center; align-items:center; scroll-snap-align:start}
+.ly-box{max-width:720px; padding:32px; background:rgba(255,255,255,.7); border-radius:24px; box-shadow:0 12px 36px rgba(0,0,0,.12)}
+.ly-txt p{margin:12px 0; font-size:20px; line-height:1.6; text-align:center; color:var(--ink)}
+
