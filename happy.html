@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>我很开心 | 教师节快乐</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+/* 全局布局 */
+
+
+
+
+.fullpage {
+  height: 100%;
+  width: 100%;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0 80px;
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
+
+/* 左侧时间轴 */
+.timeline {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ff7b7b;
+  margin: 40px 0;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.timeline-dot.active {
+  transform: scale(1.5);
+  background: #ff4c4c;
+}
+
+/* 文字和图片布局 */
+.ly-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  max-width: 1000px;
+}
+
+.ly-txt {
+  width: 50%;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.ly-img {
+  width: 40%;
+  max-width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+.ly-img img {
+  width: 100%;
+  display: block;
+}
+</style>
+</head>
+
+
+<body class="page page-branch" style="--bg:url('../img/4.jpg')">
+
+<header class="topbar">
+  <a class="link" href="main.html">← 返回选择</a>
+</header>
+
+<div class="fullpage" data-snap>
+  <section class="section">
+    <div class="timeline">
+      <div class="timeline-dot active"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="ly-box">
+      <div class="ly-txt">
+        <p>✨ 哇！看到你说开心，</p>
+        <p>我也忍不住笑起来～</p>
+        <p>快和我分享分享，</p>
+        <p>是什么让今天发光呀？</p>
+      </div>
+      <div class="ly-img">
+        <img src="assets/img/a.webp" alt="教师节图片1">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="ly-box">
+      <div class="ly-txt">
+        <p>真好！快乐会传染，</p>
+        <p>连空气都变甜了呢！</p>
+        <p>希望这种好状态，</p>
+        <p>能陪你很久很久哦。</p>
+      </div>
+      <div class="ly-img">
+        <img src="assets/img/b.webp" alt="教师节图片2">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="ly-box">
+      <div class="ly-txt">
+        <p>你的快乐照亮了我，</p>
+        <p>让我也觉得温暖～</p>
+        <p>希望每一天都能，</p>
+        <p>看见你这样笑着。</p>
+      </div>
+      <div class="ly-img">
+        <img src="assets/img/c.webp" alt="教师节图片3">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="ly-box">
+      <div class="ly-txt">
+        <p>今天的好心情请打包，</p>
+        <p>明天继续解锁呀！</p>
+        <p>要是每天都能这样，</p>
+        <p>该有多好呀～</p>
+      </div>
+      <div class="ly-img">
+        <img src="assets/img/d.webp" alt="教师节图片4">
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="assets/js/fullpage-lite.js"></script>
+<script>
+// 更新时间轴状态
+(function(){
+  const sections = document.querySelectorAll('.section');
+  const dots = document.querySelectorAll('.timeline-dot');
+  let currentIndex = 0;
+
+  function updateTimeline(index){
+    dots.forEach(dot => dot.classList.remove('active'));
+    if(dots[index]) dots[index].classList.add('active');
+  }
+
+  function scrollToIndex(index){
+    if(index<0 || index>=sections.length) return;
+    sections[index].scrollIntoView({behavior:'smooth'});
+    currentIndex = index;
+    updateTimeline(currentIndex);
+  }
+
+  // 滚轮/触摸/键盘事件
+  let isScrolling = false;
+  window.addEventListener('wheel', e=>{
+    if(isScrolling) return;
+    if(e.deltaY>0) scrollToIndex(currentIndex+1);
+    else if(e.deltaY<0) scrollToIndex(currentIndex-1);
+    isScrolling = true;
+    setTimeout(()=>{isScrolling=false;},600);
+  });
+
+  let startY=0;
+  window.addEventListener('touchstart', e=>{ startY=e.touches[0].clientY; });
+  window.addEventListener('touchend', e=>{
+    if(isScrolling) return;
+    let endY = e.changedTouches[0].clientY;
+    if(startY-endY>30) scrollToIndex(currentIndex+1);
+    else if(endY-startY>30) scrollToIndex(currentIndex-1);
+    isScrolling=true;
+    setTimeout(()=>{isScrolling=false;},600);
+  });
+
+  window.addEventListener('keydown', e=>{
+    if(isScrolling) return;
+    if(e.key==='ArrowDown') scrollToIndex(currentIndex+1);
+    else if(e.key==='ArrowUp') scrollToIndex(currentIndex-1);
+    isScrolling=true;
+    setTimeout(()=>{isScrolling=false;},600);
+  });
+})();
+</script>
+</body>
+</html>

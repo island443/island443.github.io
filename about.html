@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>关于她 | 教师节快乐</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+/* 音乐播放器固定在右下角 */
+.music-player {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+.music-player audio {
+  width: 220px;
+}
+</style>
+</head>
+
+<body class="page page-about" style="--bg:url(../img/3.jpg)">
+
+<header class="topbar">
+  <a class="link" href="index.html">← 返回首页</a>
+</header>
+
+<main class="about-wrap">
+  <figure class="avatar-card">
+    <img src="assets/img/avatar.jpg" alt="avatar" class="avatar" />
+    <figcaption class="name">一枝油菜花<span> </span> </figcaption>
+  </figure>
+
+  <!-- 音乐播放器 -->
+  <div class="music-player">
+    <audio id="bgm" controls autoplay loop>
+      <source src="assets/music/6.mp3" type="audio/mpeg" />
+      你的浏览器不支持 audio 标签
+    </audio>
+  </div>
+
+<script>
+const allPhotos = Array.from({length: 47}, (_, i) => `assets/img/${String(i+1).padStart(2,'0')}.jpg`);
+const maxPerRound = 6;
+const floatContainer = document.querySelector('main.about-wrap');
+
+let remainingPhotos = [...allPhotos]; // 剩余照片
+
+// 获取随机位置且不重叠
+function getRandomPositions(count) {
+  const positions = [];
+  let attempts = 0;
+
+  while (positions.length < count && attempts < 1000) {
+    const x = Math.random() * (window.innerWidth - 600);
+    const y = Math.random() * (window.innerHeight - 600);
+    const overlap = positions.some(pos => {
+      return Math.abs(pos.x - x) < 320 && Math.abs(pos.y - y) < 320; // 300px 宽高 + 20px 间距
+    });
+    if (!overlap) positions.push({x, y});
+    attempts++;
+  }
+  return positions;
+}
+
+
+
+// 显示一轮照片
+function showRound() {
+  if (remainingPhotos.length < maxPerRound) {
+    remainingPhotos = [...allPhotos];
+  }
+
+  const roundPhotos = shuffleArray(remainingPhotos).slice(0, maxPerRound);
+  remainingPhotos = remainingPhotos.filter(p => !roundPhotos.includes(p));
+
+  const positions = getRandomPositions(roundPhotos.length);
+
+  roundPhotos.forEach((src, i) => {
+    const div = document.createElement('div');
+    div.className = 'float-photo';
+    const img = document.createElement('img');
+    img.src = src;
+    div.appendChild(img);
+    floatContainer.appendChild(div);
+
+    const delay = Math.random() * 5000; 
+    setTimeout(() => {
+      div.style.transform = `translate(${positions[i].x}px, ${positions[i].y}px)`;
+      div.classList.add('show');
+
+      setTimeout(() => {
+        div.classList.remove('show');
+        setTimeout(() => div.remove(), 1000);
+      }, 7000);
+    }, delay);
+  });
+
+  setTimeout(showRound, 10000);
+}
+
+// 打乱数组
+function shuffleArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+// 启动循环
+showRound();
+</script>
+</main>
+</body>
+</html>
+

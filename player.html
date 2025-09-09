@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>悬浮播放器</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+    }
+    #controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 5px;
+      font-size: 14px;
+    }
+    button {
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <audio id="player" autoplay></audio>
+  <div id="controls">
+    <button onclick="prev()">⏮</button>
+    <button onclick="playPause()">▶/⏸</button>
+    <button onclick="next()">⏭</button>
+  </div>
+
+  <script src="assets/js/playlist.js"></script>
+  <script>
+    initPlayer(document.getElementById("player"));
+  </script>
+</body>
+</html>
