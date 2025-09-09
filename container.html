@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>❤一枝油菜花❤</title>
+  <style>
+    body, html {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    #main {
+      height: 100%;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    /* 悬浮播放器 */
+    #player-frame {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px; /* 播放器高度 */
+      z-index: 1000;
+      background: transparent; /* 避免出现白底 */
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <iframe id="content" src="index.html"></iframe>
+  </div>
+
+  <!-- 播放器固定在底部 -->
+  <iframe id="player-frame" src="player.html" frameborder="0"></iframe>
+
+
+
+
+
+
+</script>
+</body>
+</html>
